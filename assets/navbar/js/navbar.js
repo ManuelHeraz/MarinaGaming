@@ -11,7 +11,7 @@ const navTemplate = `
       <ul class="mega-menuN">
       
         <li class="linkN">
-          <a href="#">Inicio</a> 
+          <a href="#inicio">Inicio</a> 
         </li>
         
         <li class="linkN">
