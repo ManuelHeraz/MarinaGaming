@@ -15,7 +15,7 @@ const navTemplate = `
         </li>
         
         <li class="linkN">
-         <a href="#">Sobre nosotros</a>
+         <a href="#sobre">Sobre nosotros</a>
         </li>
 
         <li class="dropdown">
@@ -26,10 +26,10 @@ const navTemplate = `
         
           <ul class="menuN">
             <li class="linkN">
-              <a href="#">Lista de Medallas</a>
+              <a href="https://manuelheraz.github.io/pages/listaMedallas/index.html#lista">Lista de Medallas</a>
             </li>
             <li class="linkN">
-              <a href="#">Cuadro de condecoraciones</a> 
+              <a href="manuelheraz.github.io/pages/cuadroCondecoraciones/index.html">Cuadro de condecoraciones</a> 
             </li>
           </ul>
         </li>

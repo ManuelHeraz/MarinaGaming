@@ -7,6 +7,10 @@
     ---color5: #2d3033;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 ul{
     list-style: none;
 }
