@@ -11,11 +11,11 @@ const navTemplate = `
       <ul class="mega-menuN">
       
         <li class="linkN">
-          <a href="#inicio">Inicio</a> 
+          <a href="/index.html#inicio">Inicio</a> 
         </li>
         
         <li class="linkN">
-         <a href="#sobre">Sobre nosotros</a>
+         <a href="/index.html#sobre">Sobre nosotros</a>
         </li>
 
         <li class="dropdown">
@@ -43,13 +43,13 @@ const navTemplate = `
         </div>
         <ul class="menuN">
             <li class="linkN">
-                <a href="#">Almirantes</a>
+                <a href="/pages/almirantes/index.html">Almirantes</a>
             </li>
             <li class="linkN">
-                <a href="#">Moderadores</a>
+                <a href="/pages/moderadores/index.html">Moderadores</a>
             </li>
             <li class="linkN">
-                <a href="#">Admins</a>
+                <a href="/pages/admins/index.html">Admins</a>
             </li>
         </ul>
     </li>

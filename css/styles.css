@@ -12,7 +12,7 @@ body{
     background: var(---color1-p);
 }
 
-header h1, .projects h1{
+.in-header h1, .projects h1{
     font-size: 2.5em;
 }
 
@@ -30,14 +30,14 @@ p {
     color: var(---color3-p);
 }
 
-header{
+.in-header{
     height: 100vh;
     background: radial-gradient(
         #333, #1a1a1a
     );
 }
 
-header .content,
+.in-header .content,
 .projects,
 .overlay {
     display: flex;
@@ -45,7 +45,7 @@ header .content,
     align-items: center;
 }
 
-header .content {
+.in-header .content {
     color: var(---color2-p);
     padding: 0 3em;
     box-sizing: border-box;
@@ -101,13 +101,13 @@ header .content {
 
 @media screen and (max-height: 400px) {
     
-    header{
+    .in-header{
         height: 400em;
     }
 }
 
 @media screen and (min-width: 1000px){
-    header .content{
+    .in-header .content{
         margin: 0 0 0 6em;
         font-size: 18px;
     }
