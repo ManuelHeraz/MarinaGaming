@@ -90,6 +90,10 @@ const navTemplate = `
         </ul>
     </li>
 
+    <li class="linkN">
+    <a href="https://manuelheraz.github.io/MusicaMenuGamer/">Musica Gamer</a> 
+  </li>
+
       </ul>
 
     </div>
