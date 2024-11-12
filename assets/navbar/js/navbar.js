@@ -4,7 +4,7 @@ const navbar = document.getElementById('navbar');
 // Template del navbar
 const navTemplate = `
   <nav class="navbar">
-    <a href="#" class="brand">Marina Gaming</a>
+    <a href="https://manuelheraz.github.io/MarinaGaming/index.html#inicio" class="brand">Marina Gaming</a>
 
     <div class="menu-containerN">
 
