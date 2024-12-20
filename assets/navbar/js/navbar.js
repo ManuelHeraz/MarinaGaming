@@ -82,10 +82,10 @@ const navTemplate = `
         </div>
         <ul class="menuN">
             <li class="linkN">
-                <a href="#">Tienda</a>
+                <a href="https://manuelheraz.github.io/FENIXtienda/">Tienda</a>
             </li>
             <li class="linkN">
-                <a href="#">Noticiero</a>
+                <a href="https://manuelheraz.github.io/NoticiasRoleplay/">Noticiero</a>
             </li>
         </ul>
     </li>
