@@ -99,6 +99,28 @@ p {
         rgba(0,0,0,0.22) 0px 10px 10px;
 }
 
+.discord {
+    position: fixed; /* Fijo en la pantalla */
+    top: 50%; /* Centrado verticalmente */
+    right: 2%; /* Pegado al lado derecho */
+    transform: translateY(-50%); /* Ajuste para centrar verticalmente */
+    z-index: 999; /* Para que esté por encima del contenido */
+}
+
+.discord iframe {
+    width: 350px; /* Aseguramos el tamaño correcto del iframe */
+    height: 500px;
+    border: none; /* Eliminamos cualquier borde */
+}
+
+/* Ocultar en dispositivos móviles */
+@media (max-width: 768px) {
+    .discord {
+        display: none;
+    }
+}
+
+
 @media screen and (max-height: 400px) {
     
     .in-header{
