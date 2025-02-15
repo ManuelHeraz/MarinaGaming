@@ -1,66 +1,77 @@
-:root{
-    ---color1-p: #1a1a1a;
-    ---color2-p: #fff;
-    ---color3-p: #ccc;
+:root {
+    --color1-p: #1a1a1a;
+    --color2-p: #fff;
+    --color3-p: #ccc;
+    --primary-font: 'Roboto', sans-serif;
+    --secondary-font: 'Open Sans', sans-serif;
 }
 
-
-body{
+body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-    background: var(---color1-p);
-}
-
-.in-header h1, .projects h1{
-    font-size: 2.5em;
+    font-family: var(--primary-font);
+    background: var(--color1-p);
+    color: var(--color2-p);
+    line-height: 1.6;
 }
 
 h1, p, small {
-    color: var(---color2-p);
+    color: var(--color2-p);
 }
 
-a:hover{
-    color: var(---color3-p);
+a {
+    color: var(--color2-p);
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color3-p);
 }
 
 p {
     font-size: 0.9em;
-    color: var(---color3-p);
+    color: var(--color3-p);
 }
 
-.in-header{
+/* Header */
+.in-header {
     height: 100vh;
-    background: radial-gradient(
-        #333, #1a1a1a
-    );
-}
-
-.in-header .content,
-.projects,
-.overlay {
+    background: radial-gradient(#333, var(--color1-p));
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+.in-header h1 {
+    font-size: 2.5em;
+    font-family: var(--secondary-font);
+    margin-bottom: 0.5em;
 }
 
 .in-header .content {
-    color: var(---color2-p);
-    padding: 0 3em;
+    color: var(--color2-p);
+    padding: 0 2em;
     box-sizing: border-box;
-    height: 90%;
     max-width: 700px;
     margin: 0 auto;
 }
 
-.projects{
+/* Projects Section */
+.projects {
     position: relative;
     filter: saturate(0%);
+    text-align: center;
 }
 
-.projects img{
+.projects img {
     width: 25%;
+    transition: transform 0.3s ease;
+}
+
+.projects img:hover {
+    transform: scale(1.1);
 }
 
 .overlay {
@@ -69,84 +80,118 @@ p {
     left: 0;
     background: linear-gradient(
         0deg,
-        rgba(26,26,26,1) 0%,
-        rgba(26,26,26,0.8) 90%
+        rgba(26, 26, 26, 1) 0%,
+        rgba(26, 26, 26, 0.8) 90%
     );
     width: 100%;
     height: 100%;
     z-index: 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.row   {
+.overlay h1 {
+    font-size: 2em;
+    font-family: var(--secondary-font);
+    color: var(--color2-p);
+}
+
+/* Row Layout */
+.row {
     display: grid;
-    justify-items: start;
-    align-items: center;
     grid-template-columns: 1fr 2fr;
     grid-gap: 2em;
     padding: 3em 2em;
+    align-items: center;
 }
 
-.row p{
+.row p {
     font-size: 0.8em;
     max-width: 33em;
+    line-height: 1.6;
 }
 
-.row img{
+.row img {
     width: 22em;
     box-shadow: 
-        rgba(0,0,0,0.25) 0px 14px 28px,
-        rgba(0,0,0,0.22) 0px 10px 10px;
+        rgba(0, 0, 0, 0.25) 0px 14px 28px,
+        rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    transition: transform 0.3s ease;
 }
 
+.row img:hover {
+    transform: scale(1.05);
+}
+
+/* Discord Widget */
 .discord {
-    position: fixed; /* Fijo en la pantalla */
-    top: 50%; /* Centrado verticalmente */
-    right: 2%; /* Pegado al lado derecho */
-    transform: translateY(-50%); /* Ajuste para centrar verticalmente */
-    z-index: 999; /* Para que esté por encima del contenido */
+    position: fixed;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    z-index: 999;
 }
 
 .discord iframe {
-    width: 350px; /* Aseguramos el tamaño correcto del iframe */
+    width: 350px;
     height: 500px;
-    border: none; /* Eliminamos cualquier borde */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 
+        rgba(0, 0, 0, 0.25) 0px 14px 28px,
+        rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-/* Ocultar en dispositivos móviles */
+/* Responsive Design */
 @media (max-width: 768px) {
     .discord {
         display: none;
     }
-}
 
+    .in-header {
+        height: auto;
+        padding: 2em 1em;
+    }
 
-@media screen and (max-height: 400px) {
-    
-    .in-header{
-        height: 400em;
+    .in-header h1 {
+        font-size: 2em;
     }
-}
 
-@media screen and (min-width: 1000px){
-    .in-header .content{
-        margin: 0 0 0 6em;
-        font-size: 18px;
-    }
-    .projects .overlay h1{
-        font-size: 3em;
-    }
-    .row img{
-        width: 30em;
-    }
-    .post {
-        font-size: 18px;
-    }
-}
-
-@media screen and (max-width: 680px) {
-    .row{
+    .row {
         grid-template-columns: 1fr;
         justify-items: center;
+        padding: 2em 1em;
+    }
+
+    .row img {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .in-header .content {
+        margin-left: 6em;
+        font-size: 18px;
+    }
+
+    .projects .overlay h1 {
+        font-size: 3em;
+    }
+
+    .row img {
+        width: 30em;
+    }
+}
+
+@media screen and (max-height: 400px) {
+    .in-header {
+        height: auto;
+        padding: 1em;
+    }
+
+    .in-header h1 {
+        font-size: 1.5em;
     }
 }
