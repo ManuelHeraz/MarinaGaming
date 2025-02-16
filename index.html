@@ -30,18 +30,20 @@
     </div>
 
 </header>
-    <section class="projects">
-        <div class="overlay">
-            <div>
-                <h1>Eventos Unicos</h1>
-                <a href="https://discord.gg/XfqqrWNAhy">Unete a la comunidad</a>
-            </div>
+<section class="projects">
+    <div class="overlay">
+        <div>
+            <h1>Eventos Únicos</h1>
+            <a href="https://discord.gg/XfqqrWNAhy">Únete a la comunidad</a>
         </div>
+    </div>
+    <div class="carousel">
         <img src="https://i.imgur.com/tecmvOq.jpg" alt="Project">
         <img src="https://i.imgur.com/4ybMuUq.jpg" alt="Project">
         <img src="https://i.imgur.com/GTileQf.jpg" alt="Project">
         <img src="https://i.imgur.com/bIsuDJX.jpg" alt="Project">
-    </section>
+    </div>
+</section>
 
 
     <section class="posts">
@@ -141,5 +143,12 @@
     <script src="js/main.js"></script>
     <script src="assets/footer/js/footer.js"></script>
     <script src="assets/navbar/js/main.js"></script>
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const images = carousel.querySelectorAll('img');
+        const imageWidth = images[0].clientWidth;
+        carousel.innerHTML += carousel.innerHTML;
+        carousel.style.width = `${images.length * 200}%`;
+    </script>
 </body>
 </html>
