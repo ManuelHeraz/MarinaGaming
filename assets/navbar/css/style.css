@@ -38,9 +38,23 @@ a{
     gap: 1em;
 }
 
-.brand{
+/* Estilo para el contenedor del logo y el texto */
+.brand {
+    display: flex;
+    align-items: center; /* Centra los elementos horizontalmente */
     font-weight: bold;
     font-size: 1.3em;
+}
+
+/* Estilo para el logo */
+.logo {
+    width: 120px; /* Tamaño base para PC */
+    height: auto; /* Mantener la proporción */
+}
+
+/* Estilo para el texto "Marina Gaming" */
+.brand-text {
+    font-size: 1em; /* Tamaño del texto */
 }
 
 button{
@@ -84,6 +98,8 @@ button{
 .dropdown .menuN a:hover {
     color: var(---color4);
 }
+
+
 
 @media screen and (min-width: 900px){
     .navbar{
@@ -199,6 +215,13 @@ button{
         padding: 1em 1.5em;
     }
 
+    .logo {
+        width: 30px; /* Reducir el tamaño del logo en dispositivos móviles */
+    }
+
+    .brand {
+        font-size: 1em; /* Reducir el tamaño del texto en dispositivos móviles */
+    }
     
     .btnN{
         margin-left: 0%;

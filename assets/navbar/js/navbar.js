@@ -4,26 +4,23 @@ const navbar = document.getElementById('navbar');
 // Template del navbar
 const navTemplate = `
   <nav class="navbar">
-    <a href="https://manuelheraz.github.io/MarinaGaming/index.html#inicio" class="brand">Marina Gaming</a>
-
+    <a href="https://manuelheraz.github.io/MarinaGaming/index.html#inicio" class="brand">
+      <img src="https://lh3.google.com/u/2/d/1Y2FY8HucV76hUs6HvRnuhPK8xUpRbQ6Z=w3000-h6501-iv1?auditContext=forDisplay" alt="Logo Marina Gaming" class="logo">
+      <span class="brand-text">Marina Gaming</span>
+    </a>
     <div class="menu-containerN">
-
       <ul class="mega-menuN">
-      
         <li class="linkN">
           <a href="https://manuelheraz.github.io/MarinaGaming/index.html#inicio">Inicio</a> 
         </li>
-        
         <li class="linkN">
-         <a href="https://manuelheraz.github.io/MarinaGaming/index.html#sobre">Sobre nosotros</a>
+          <a href="https://manuelheraz.github.io/MarinaGaming/index.html#sobre">Sobre nosotros</a>
         </li>
-
         <li class="dropdown">
           <div>
             <span>Medallas</span>
             <span class="material-symbols-outlined">expand_more</span>
           </div>
-        
           <ul class="menuN">
             <li class="linkN">
               <a href="https://manuelheraz.github.io/Medallas/pages/listaMedallas/index.html#lista">Lista de Medallas</a>
@@ -33,15 +30,14 @@ const navTemplate = `
             </li>
           </ul>
         </li>
-
         <li class="dropdown">
-        <div>
+          <div>
             <span>Alto Mando</span>
             <span class="material-symbols-outlined">
                 expand_more
             </span>
-        </div>
-        <ul class="menuN">
+          </div>
+          <ul class="menuN">
             <li class="linkN">
                 <a href="https://manuelheraz.github.io/MarinaGaming/pages/almirantes/index.html">Almirantes</a>
             </li>
@@ -51,60 +47,54 @@ const navTemplate = `
             <li class="linkN">
                 <a href="https://manuelheraz.github.io/MarinaGaming/pages/admins/index.html">Admins</a>
             </li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <div>
-            <span>MAR TV</span>
-            <span class="material-symbols-outlined">
-                expand_more
-            </span>
-        </div>
-        <ul class="menuN">
-            <li class="linkN">
-                <a href="https://manuelheraz.github.io/MARTV/">MAR TV</a>
-            </li>
-            <li class="linkN">
-                <a href="https://manuelheraz.github.io/MARTV/#movies">Peliculas</a>
-            </li>
-            <li class="linkN">
-                <a href="https://manuelheraz.github.io/MARTV/#series">Series</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="dropdown">
-        <div>
-            <span>FENIX-RolePlay</span>
-            <span class="material-symbols-outlined">
-                expand_more
-            </span>
-        </div>
-        <ul class="menuN">
-            <li class="linkN">
-                <a href="https://manuelheraz.github.io/FENIXtienda/">Tienda</a>
-            </li>
-            <li class="linkN">
-                <a href="https://manuelheraz.github.io/NoticiasRoleplay/">Noticiero</a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="linkN">
-    <a href="https://manuelheraz.github.io/MusicaMenuGamer/">Musica Gamer</a> 
-  </li>
-
+          </ul>
+        </li>
+        <li class="dropdown">
+          <div>
+              <span>MAR TV</span>
+              <span class="material-symbols-outlined">
+                  expand_more
+              </span>
+          </div>
+          <ul class="menuN">
+              <li class="linkN">
+                  <a href="https://manuelheraz.github.io/MARTV/">MAR TV</a>
+              </li>
+              <li class="linkN">
+                  <a href="https://manuelheraz.github.io/MARTV/#movies">Peliculas</a>
+              </li>
+              <li class="linkN">
+                  <a href="https://manuelheraz.github.io/MARTV/#series">Series</a>
+              </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <div>
+              <span>FENIX-RolePlay</span>
+              <span class="material-symbols-outlined">
+                  expand_more
+              </span>
+          </div>
+          <ul class="menuN">
+              <li class="linkN">
+                  <a href="https://manuelheraz.github.io/FENIXtienda/">Tienda</a>
+              </li>
+              <li class="linkN">
+                  <a href="https://manuelheraz.github.io/NoticiasRoleplay/">Noticiero</a>
+              </li>
+          </ul>
+        </li>
+        <li class="linkN">
+          <a href="https://manuelheraz.github.io/MusicaMenuGamer/">Musica Gamer</a> 
+        </li>
       </ul>
-
     </div>
-
     <div class="buttonsN">
       <button class="btnN">Discord</button>
       <button class="menu-btn">
         <span class="material-symbols-outlined">menu</span>
       </button>
     </div>
-
   </nav>
 `;
 
