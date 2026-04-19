@@ -2,47 +2,47 @@
 # Cada línea que empieza con '#' es un comentario y es ignorada.
 
 # --- Información Básica del Sitio ---
-# Usada por el plugin de SEO para crear los títulos y descripciones.
-description: >- # El '>-' permite escribir una descripción en varias líneas.
-  Marina Gaming es la comunidad de videojuegos definitiva para jugadores de habla hispana.
-  Únete a nuestro servidor de Discord para organizar partidas y eventos en una gran variedad de juegos
-  como GTA Online (crew activa), Halo, Warzone, Minecraft, Overwatch, F1 y Forza.
-  Además de jugar, ofrecemos apoyo a creadores de contenido para que crezcan sus canales y una
-  radio online 24/7 con la mejor música gamer. Si buscas un lugar para divertirte y conectar,
-  ¡este es tu sitio!
+title: "Marina Gaming Oficial"
+description: >-
+  Marina Gaming es la comunidad definitiva para jugadores de habla hispana. 
+  Únete a nuestra flota en Discord para partidas de GTA Online, FENIX-RolePlay, 
+  Halo y sim-racing. Disfruta de nuestra transmisión en vivo 24/7 por MAR TV, 
+  apoyo a creadores de contenido y eventos exclusivos.
+  
 # --- Detalles Técnicos y URL ---
-# ¡IMPORTANTE! Reemplaza esto con la URL real de tu sitio en GitHub Pages.
-# Cópiala directamente de la barra de tu navegador.
-url: "https://manuelheraz.github.io/MarinaGaming" 
+# Séparalo así para que Jekyll y GitHub Pages construyan bien los enlaces
+url: "https://manuelheraz.github.io" 
+baseurl: "/MarinaGaming"
+
+# Idioma y Región (Crucial para que Google México/Latam te recomiende)
+locale: "es-MX"
+
+# Imagen que aparecerá al compartir el link en Discord, WhatsApp, Twitter, etc.
+# Sustituye por el link directo a tu logo en alta calidad
+image: "https://lh3.google.com/u/2/d/1Y2FY8HucV76hUs6HvRnuhPK8xUpRbQ6Z=w3000-h6501-iv1?auditContext=forDisplay"
+logo: "https://lh3.google.com/u/2/d/1Y2FY8HucV76hUs6HvRnuhPK8xUpRbQ6Z=w3000-h6501-iv1?auditContext=forDisplay"
 
 # --- Plugins ---
-# Aquí activamos la 'magia' del SEO.
-# Esta lista le dice a GitHub Pages qué plugins debe usar al construir tu sitio.
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# --- Información Opcional (pero recomendada) ---
-# El plugin de SEO puede usar esta información para enriquecer los metadatos.
-# Por ejemplo, al compartir un enlace en Twitter, usará este usuario.
-# --- Información Opcional (pero recomendada) ---
-author: Marina Gaming
-twitter:
-  username: JoelHeaz # Reemplaza con el usuario de Twitter/X de la comunidad si tienen
-  card: summary_large_image
-
 # --- Redes Sociales Oficiales ---
-# El plugin de SEO usará estos enlaces para decirle a Google y a otras
-# plataformas cuáles son tus perfiles oficiales.
+author: "Marina Gaming"
+twitter:
+  username: "JoelHeaz" 
+  card: "summary_large_image"
+
 social:
-  name: Marina Gaming
+  name: "Marina Gaming"
   links:
     - https://www.youtube.com/@joelheaz
     - https://www.facebook.com/MarinaGamingOfficial
     - https://www.tiktok.com/@joelheaz
-     -https://x.com/JoelHeaz  <-- Puedes añadirlo aquí también
-    - https://www.instagram.com/@Joel_Heaz <-- Y otras redes
+    - https://x.com/JoelHeaz
+    - https://www.instagram.com/Joel_Heaz
+    - https://medium.com/@JoelHeaz
+    - https://www.linkedin.com/company/marina-gaming
+
 # --- Configuración de Jekyll (Avanzado) ---
-# Por ahora no necesitas tocar nada más.
-# Esta línea le dice a Jekyll cómo procesar los posts de blog (si los creas).
 markdown: kramdown
