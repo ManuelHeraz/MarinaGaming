@@ -58,6 +58,9 @@ const navTemplate = `
           </div>
           <ul class="menuN">
               <li class="linkN">
+                  <a href="#" style="color: #ff3b3b; font-weight: bold;">🔴 EN VIVO</a>
+              </li>
+              <li class="linkN">
                   <a href="https://manuelheraz.github.io/MARTV/">MAR TV</a>
               </li>
               <li class="linkN">
