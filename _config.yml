@@ -1,48 +1,77 @@
-# Bienvenido a la configuración de Marina Gaming.
-# Cada línea que empieza con '#' es un comentario y es ignorada.
+# ============================================================
+# MARINA GAMING — _config.yml
+# Motor SEO: Optimizado para Google y LLMs (IA)
+# ============================================================
 
-# --- Información Básica del Sitio ---
+# --- 1. IDENTIDAD PRINCIPAL ---
 title: "Marina Gaming Oficial"
 description: >-
-  Marina Gaming es la comunidad definitiva para jugadores de habla hispana. 
-  Únete a nuestra flota en Discord para partidas de GTA Online, FENIX-RolePlay, 
-  Halo y sim-racing. Disfruta de nuestra transmisión en vivo 24/7 por MAR TV, 
-  apoyo a creadores de contenido y eventos exclusivos.
+  Marina Gaming es la comunidad de videojuegos en español más activa.
+  Únete a nuestra flota en Discord para jugar GTA Online, FENIX-RolePlay, Halo 
+  y sim-racing. Transmisión en vivo 24/7 en MAR TV, apoyo a creadores de 
+  contenido y eventos exclusivos de la crew.
   
-# --- Detalles Técnicos y URL ---
-# Séparalo así para que Jekyll y GitHub Pages construyan bien los enlaces
-url: "https://manuelheraz.github.io" 
+# Palabras clave explícitas para rastreadores web
+keywords: "comunidad gamer, GTA Online español, FENIX RolePlay, sim racing, MAR TV streaming, Marina Gaming, Halo cooperativo"
+
+# --- 2. URLs Y RUTAS ---
+url: "https://manuelheraz.github.io"
 baseurl: "/MarinaGaming"
+permalink: /:categories/:title/
 
-# Idioma y Región (Crucial para que Google México/Latam te recomiende)
+# --- 3. LOCALIZACIÓN Y TIEMPO ---
 locale: "es-MX"
+lang: "es"
+timezone: "America/Mexico_City"
 
-# Imagen que aparecerá al compartir el link en Discord, WhatsApp, Twitter, etc.
-# Sustituye por el link directo a tu logo en alta calidad
-image: "https://lh3.google.com/u/2/d/1Y2FY8HucV76hUs6HvRnuhPK8xUpRbQ6Z=w3000-h6501-iv1?auditContext=forDisplay"
-logo: "https://lh3.google.com/u/2/d/1Y2FY8HucV76hUs6HvRnuhPK8xUpRbQ6Z=w3000-h6501-iv1?auditContext=forDisplay"
+# --- 4. IMÁGENES OPEN GRAPH (El estándar de redes) ---
+# IMPORTANTE: Descarga tu logo, ponlo en la carpeta de tu repo y usa estas rutas.
+logo: "/assets/img/marina-gaming-logo.png"
+image: "/assets/img/marina-gaming-og.png" 
 
-# --- Plugins ---
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-# --- Redes Sociales Oficiales ---
+# --- 5. REDES SOCIALES Y ESTRUCTURA ORGANIZACIONAL ---
+# Al definir esto, jekyll-seo-tag construye el Schema.org automáticamente.
 author: "Marina Gaming"
 twitter:
-  username: "JoelHeaz" 
+  username: "JoelHeaz"
   card: "summary_large_image"
+
+# Configuración de Entidad Organizacional
+seo:
+  type: Organization
 
 social:
   name: "Marina Gaming"
   links:
+    # Plataformas de Contenido y Comunidad
     - https://www.youtube.com/@joelheaz
     - https://www.facebook.com/MarinaGamingOfficial
     - https://www.tiktok.com/@joelheaz
     - https://x.com/JoelHeaz
     - https://www.instagram.com/Joel_Heaz
-    - https://medium.com/@JoelHeaz
+    - https://discord.gg/XfqqrWNAhy
+    # Presencia Profesional y Publicaciones
     - https://www.linkedin.com/company/marina-gaming
+    - https://medium.com/@joelheaz
 
-# --- Configuración de Jekyll (Avanzado) ---
+# --- 6. PLUGINS DEL MOTOR ---
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+# --- 7. EXCLUSIONES DEL SITEMAP ---
+# Evita que Google indexe archivos basura de código
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - ".github/"
+
+# --- 8. COMPILADOR ---
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
