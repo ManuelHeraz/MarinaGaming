@@ -1,0 +1,124 @@
+.cuadro{
+    background: 
+    url(
+        https://th.bing.com/th/id/R.d83e2df12147f7943a3c7fbffd6c1c97?rik=mkSpBvaR5%2fs9XA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f6%2f5%2f3%2f863666-best-abstract-gaming-wallpapers-1080p-1920x1080-4k.jpg&ehk=qKm9bQISty20tvkHCCByGxSw%2fKuos9Lsa2pZXUr%2fGLk%3d&risl=&pid=ImgRaw&r=0
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.user-cards{
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+.card{
+    margin: 3em 1em 1em 1em;
+    max-width: 35em;
+    background: rgba(171, 171, 171, 0.1);
+    color: #fff;
+    padding: 2em;
+    text-align: center;
+    border-radius: 0.8em;
+    box-shadow: 0 0 0.5 rgba(0, 0, 0, 0.5);
+    position: relative;
+    backdrop-filter: blur(4px);
+    border: 1px #555 solid;
+}
+
+.card::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        0deg,
+        #59fc72,
+        #02bafc
+    );
+    width: 0;
+    height: 0;
+    z-index: -1;
+    border-radius: inherit;
+}
+
+.profile-img{
+    width: 6em;
+    height: 6em;
+    margin: -4em auto 0 auto;
+    border-radius: 50%;
+    background: linear-gradient(
+        0deg,
+        #59fc72,
+        #02bafc 
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 0.5em #26293e;
+}
+
+.profile-img img{
+    width: 90%;
+    height: 90%;
+    border-radius: inherit;
+}
+
+.card h2{
+    margin: 1em 0 0 0 ;
+}
+
+.card small{
+    color: #646771;
+    transition: 0.2s;
+}
+
+.card button{
+    background: rgba(171, 171, 171, 0.2);
+    border: none;
+    border-radius: 3em;
+    padding: 0.8em 2em;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    margin-top: 10%;
+}
+
+.card:hover button{
+    background: #fff;
+    color: #111;
+}
+
+.card:hover button a{
+    color: #111;
+}
+
+.card:hover small{
+    color: #fff;
+}
+
+.card:hover:before{
+    animation: fill 1s ease-in-out forwards;
+}
+
+@keyframes fill{
+    40%{
+        width: 100%;
+        height: 0.5em;
+    }
+    50%{
+        width: 100%;
+        height: 0.5em;
+    }
+    100%{
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -1,0 +1,174 @@
+/* Estilos Generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #121212, #1a1a1a);
+    color: #ffffff;
+}
+
+.main-content {
+    display: block;
+    flex-direction: column; /* Columnar por defecto */
+    max-width: 1200px;
+    margin: auto;
+    padding: 10%;
+    position: relative;
+    text-align: justify;
+}
+
+.panel-info {
+    float: right;
+    width: 15%;
+    padding: 6%;
+    background-color: #2b2b2b;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 5%;
+}
+
+/* Título Principal */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Panel de Información */
+.panel-info img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.panel-info img:hover{
+    background: #444444;
+}
+
+.panel-info h3 {
+    margin: 10px 0;
+    color: #dddddd;
+    padding: 2%;
+    border-top: 2px solid #444444;
+}
+
+.panel-info p {
+    font-size: 0.9em;
+    margin-bottom: 10%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.panel-info a {
+    color: #b3b3b3;
+    text-decoration: none;
+}
+
+.panel-info a:hover {
+    color: #ffffff;
+}
+
+.panel-info ul{
+    text-align: justify;
+}
+
+/* Sección Índice */
+.panel-indice {
+    margin: 5% 0;
+    padding: 5%;
+    background-color: #2b2b2b;
+    border-radius: 5px;
+    width: 20%;
+}
+
+.panel-indice h2 {
+    margin-bottom: 2%;
+    border-bottom: 2px solid #444444;
+    padding-bottom: 2%;
+}
+
+.panel-indice .index ul {
+    list-style: none;
+    padding: 0;
+}
+
+.panel-indice .index li {
+    margin: 5px 0;
+}
+
+.panel-indice a {
+    color: #b3b3b3;
+    text-decoration: none;
+}
+
+.panel-indice a:hover {
+    color: #ffffff;
+}
+
+/* Secciones */
+.intro-section,
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    border-bottom: 2px solid #444444;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.imagen{
+    right: 5%;
+    width: 15%;
+    padding: 3%;
+    border-radius: 10%;
+    background-color: #2b2b2b;
+}
+
+.section img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin: 10px 0;
+    
+}
+
+.section p {
+    line-height: 1.6;
+}
+
+.section a {
+    color: #b3b3b3;
+}
+
+
+@media (max-width: 768px) {
+    .main-content {
+        display: flex;
+        flex-direction: column; /* Cambia a disposición vertical */
+        padding: 15%;
+        margin-top: 10%;
+    }
+
+    .panel-info {
+        position: relative; /* Deja de ser absoluto */
+        width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 20px; /* Espacio debajo del panel-info */
+        top: 0;
+        right: 0;
+        padding: 5%; /* Aumenta el relleno en dispositivos pequeños */
+    }
+
+    .panel-indice {
+        width: 100%; /* Índice ocupa todo el ancho */
+        margin: 20px 0; /* Espacio entre secciones */
+        padding: 5%;
+    }
+
+    .section {
+        width: 100%; /* Secciones ocupan todo el ancho */
+    }
+
+    .imagen {
+        margin: 0 auto; /* Centra las imágenes */
+        width: 100%;
+    }
+}

@@ -1,0 +1,92 @@
+:root{
+    ---l-color1: #e7f2fd;
+    ---l-color2: #fff;
+    ---l-color3: #4070f4;
+    ---l-color4: #e0e0e0;
+    ---l-color5: #333;
+}
+
+.conainer-lista{
+    background: 
+    url(
+        https://th.bing.com/th/id/R.d83e2df12147f7943a3c7fbffd6c1c97?rik=mkSpBvaR5%2fs9XA&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f6%2f5%2f3%2f863666-best-abstract-gaming-wallpapers-1080p-1920x1080-4k.jpg&ehk=qKm9bQISty20tvkHCCByGxSw%2fKuos9Lsa2pZXUr%2fGLk%3d&risl=&pid=ImgRaw&r=0
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container{
+    position: relative;
+    width: 90%;
+    padding: 10%;
+    
+}
+   
+.filtered_buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.btn{
+    padding: 10px 20px;
+    font-size: 18px;
+    background: var(---l-color2);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: 0.2s;
+}
+
+button.active{
+    background: var(---l-color3);
+    color: var(---l-color2);
+}
+
+.filterable_cards{
+    display: flex;
+    margin-top: 25px;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card{
+    flex-basis: 300px;
+    background-color: var(---l-color2);
+    padding: 3px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.card.hide{
+    display: none;
+}
+
+.card .medalla{
+    width: 100%;
+    height: 210px;
+    object-fit: contain;
+}
+
+.card_body{
+    padding: 15px 20px 20px;
+}
+
+.card_title{
+    font-size: 20px;
+    font-weight: 700;
+    color: var(---l-color5);
+}
+
+.card_text{
+    font-size: 18px;
+    color: var(---l-color5);
+}
+

@@ -1,0 +1,48 @@
+# Bienvenido a la configuración de Marina Gaming.
+# Cada línea que empieza con '#' es un comentario y es ignorada.
+
+# --- Información Básica del Sitio ---
+# Usada por el plugin de SEO para crear los títulos y descripciones.
+description: >- # El '>-' permite escribir una descripción en varias líneas.
+  Marina Gaming es la comunidad de videojuegos definitiva para jugadores de habla hispana.
+  Únete a nuestro servidor de Discord para organizar partidas y eventos en una gran variedad de juegos
+  como GTA Online (crew activa), Halo, Warzone, Minecraft, Overwatch, F1 y Forza.
+  Además de jugar, ofrecemos apoyo a creadores de contenido para que crezcan sus canales y una
+  radio online 24/7 con la mejor música gamer. Si buscas un lugar para divertirte y conectar,
+  ¡este es tu sitio!
+# --- Detalles Técnicos y URL ---
+# ¡IMPORTANTE! Reemplaza esto con la URL real de tu sitio en GitHub Pages.
+# Cópiala directamente de la barra de tu navegador.
+url: "https://manuelheraz.github.io/MarinaGaming" 
+
+# --- Plugins ---
+# Aquí activamos la 'magia' del SEO.
+# Esta lista le dice a GitHub Pages qué plugins debe usar al construir tu sitio.
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# --- Información Opcional (pero recomendada) ---
+# El plugin de SEO puede usar esta información para enriquecer los metadatos.
+# Por ejemplo, al compartir un enlace en Twitter, usará este usuario.
+# --- Información Opcional (pero recomendada) ---
+author: Marina Gaming
+twitter:
+  username: JoelHeaz # Reemplaza con el usuario de Twitter/X de la comunidad si tienen
+  card: summary_large_image
+
+# --- Redes Sociales Oficiales ---
+# El plugin de SEO usará estos enlaces para decirle a Google y a otras
+# plataformas cuáles son tus perfiles oficiales.
+social:
+  name: Marina Gaming
+  links:
+    - https://www.youtube.com/@joelheaz
+    - https://www.facebook.com/MarinaGamingOfficial
+    - https://www.tiktok.com/@joelheaz
+     -https://x.com/JoelHeaz  <-- Puedes añadirlo aquí también
+    - https://www.instagram.com/@Joel_Heaz <-- Y otras redes
+# --- Configuración de Jekyll (Avanzado) ---
+# Por ahora no necesitas tocar nada más.
+# Esta línea le dice a Jekyll cómo procesar los posts de blog (si los creas).
+markdown: kramdown

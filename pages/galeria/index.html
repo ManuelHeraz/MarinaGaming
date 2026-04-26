@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/assets/navbar/css/style.css">
+    <link rel="stylesheet" href="/assets/footer/css/style.css">
+    <title>Galeria Marina Gaming</title>
+    <link rel="icon" type="image/png" href="https://lh3.google.com/u/2/d/1Y2FY8HucV76hUs6HvRnuhPK8xUpRbQ6Z=w3000-h6501-iv1?auditContext=forDisplay">
+</head>
+<body>
+    <nav id="navbar"></nav>
+    <div class="main-content">
+        <!-- Slider -->
+        <section class="featured-photos-slider">
+            <h2>Fotos Destacadas</h2>
+            <div class="slider-container">
+                <div class="slider">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Foto destacada 1">
+                    <img src="https://lh3.google.com/u/2/d/1WZMWNKjEep5ygYyNlJWKhau2XFw-fyXN=w1873-h955-iv1" alt="Foto destacada 2">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Foto destacada 3">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Foto destacada 4">
+                </div>
+                <div class="slider-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                    <span class="indicator" data-index="2"></span>
+                    <span class="indicator" data-index="3"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel de Filtros -->
+        <section class="gallery">
+            <h2>Galería</h2>
+            <div class="filter-panel">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="Cyberpunk 2077">Cyberpunk 2077</button>
+                <button class="filter-btn" data-filter="The Witcher 3">The Witcher 3</button>
+                <button class="filter-btn" data-filter="Horizon Zero Dawn">Horizon Zero Dawn</button>
+                <button class="filter-btn" data-filter="Assassin's Creed Valhalla">Assassin's Creed Valhalla</button>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-info="Autor: John Doe | Videojuego: Cyberpunk 2077">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Galería 1">
+                </div>
+                <div class="gallery-item" data-info="Autor: Jane Smith | Videojuego: The Witcher 3">
+                    <img src="https://lh3.google.com/u/2/d/1WZMWNKjEep5ygYyNlJWKhau2XFw-fyXN=w1873-h955-iv1" alt="Galería 2">
+                </div>
+                <div class="gallery-item" data-info="Autor: Alex Johnson | Videojuego: Horizon Zero Dawn">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Galería 3">
+                </div>
+                <div class="gallery-item" data-info="Autor: Sarah Lee | Videojuego: Assassin's Creed Valhalla">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Galería 4">
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal" id="galleryModal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content">
+                <img class="modal-image" id="modalImage">
+                <div class="info-panel" id="infoPanel">
+                    <h3>Detalles</h3>
+                    <p id="infoText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer"></footer>
+    <script src="https://kit.fontawesome.com/8f703f9e9a.js" crossorigin="anonymous"></script>
+    <script src="/assets/navbar/js/navbar.js"></script>
+    <script src="/assets/navbar/js/main.js"></script>
+    <script src="/assets/footer/js/footer.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/gallery.js"></script> <!-- Nuevo archivo para la galería -->
+</body>
+</html>

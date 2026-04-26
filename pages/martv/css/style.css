@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&family=Poppins:wght@400;500;600;700&family=Prata&display=swap');
+
+/* Variables globales */
+:root {
+    --main-color: #ff2c1f;
+    --text-color: #020307;
+    --bg-color: #fff;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset básico */
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar personalizada */
+html::-webkit-scrollbar {
+    width: 0.5rem;
+    background: var(--text-color);
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 5rem;
+}
+
+/* Estilos generales del cuerpo */
+body {
+    background: var(--text-color);
+    color: var(--bg-color);
+    line-height: 1.6;
+}
+
+/* Secciones */
+section {
+    padding: 4.5rem 0 1.5rem;
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+    min-height: 640px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(2, 3, 7, 0.4);
+    overflow: hidden;
+}
+
+.container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+    opacity: 0.8; /* Reducir opacidad para destacar contenido */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.container img:hover {
+    opacity: 1; /* Efecto hover en la imagen */
+}
+
+/* Texto principal */
+.home-text {
+    z-index: 1000;
+    padding: 0 150px;
+    margin-top: 10%;
+    text-align: center;
+}
+.home-text span {
+    color: var(--bg-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.home-text h1 {
+    color: var(--bg-color);
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejorar legibilidad */
+}
+
+/* Botón de reproducción */
+.play {
+    position: absolute;
+    right: 4rem;
+    bottom: 10%;
+    cursor: pointer;
+}
+.play .bx {
+    background: var(--bg-color);
+    padding: 10px;
+    font-size: 2rem;
+    border-radius: 50%;
+    border: 4px solid rgba(2, 3, 7, 0.4);
+    color: var(--main-color);
+    transition: all 0.2s linear;
+}
+.play .bx:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    transform: scale(1.1); /* Efecto de escala al pasar el mouse */
+}
+
+/* Títulos */
+.heading {
+    max-width: 968px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--main-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Contenedor de películas/series */
+.movies-container {
+    max-width: 968px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.fotos {
+    padding: 4rem 0;
+    color: #fff;
+    text-align: center;
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Contenedor del carrusel */
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    animation: scroll-left 15s linear infinite; /* Animación de desplazamiento */
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    width: 300px; /* Ancho de cada imagen */
+    margin-right: 1rem;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.carousel-item img:hover {
+    transform: scale(1.05); /* Efecto zoom al pasar el mouse */
+}
+
+/* Botón "VER TODAS LAS FOTOS" */
+.view-all {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.view-all .btn {
+    display: inline-block;
+    background: var(--main-color);
+    color: var(--bg-color);
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    margin-right: 5%;
+}
+
+.view-all .btn:hover {
+    background: var(--text-color);
+    transform: scale(1.05);
+}
+
+/* Animación del carrusel */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+.box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease-in-out;
+}
+
+.box a{
+   text-decoration: none;
+   color: var(--bg-color);
+   text-transform: uppercase;
+   font-size: 1rem;
+   font-weight: 500;
+   margin: 0.5rem 0;
+   padding: 0 0.5rem;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+.box-img {
+    width: 100%;
+    height: 270px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+.box-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+.box-img img:hover {
+    transform: scale(1.1); /* Efecto zoom en la imagen */
+}
+
+.box h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+}
+.box span {
+    font-size: 0.8rem;
+    color: var(--main-color);
+    padding: 0 0.5rem;
+}
+
+/* Contenedor de próximamente */
+.coming-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    max-width: 968px;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+.coming-container .box {
+    width: 100%;
+    text-align: center;
+}
+.coming-container .box-img img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Footer */
+.copyright {
+    padding: 20px;
+    text-align: center;
+    color: var(--bg-color);
+    font-size: 0.9rem;
+    background: var(--main-color);
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1080px) {
+    .home-text {
+        padding: 0 100px;
+    }
+}
+
+@media (max-width: 991px) {
+    section {
+        padding: 50px 4%;
+    }
+    .home-text {
+        padding: 0 4%;
+    }
+    .home-text h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 774px) {
+    .movies-container {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    .carousel-item {
+        width: 200px; /* Reducir el ancho de las imágenes en pantallas pequeñas */
+    }
+
+    .heading {
+        font-size: 1.5rem;
+    }
+
+    .view-all {
+        text-align: center; /* Centrar el botón en móviles */
+    }
+}
+
+@media (max-width: 370px) {
+    header {
+        padding: 6px 4%;
+    }
+    .home-text h1 {
+        font-size: 1.7rem;
+    }
+    .play {
+        right: 2rem;
+        bottom: 8%;
+    }
+    .play .bx {
+        padding: 7px;
+    }
+    .movies-container {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    .box .box-img {
+        height: 240px;
+    }
+    .carousel-item {
+        width: 150px; /* Reducir aún más el ancho en móviles pequeños */
+    }
+
+    .view-all .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

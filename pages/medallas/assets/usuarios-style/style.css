@@ -1,0 +1,64 @@
+.banner {
+    position: relative;
+    height: 60vh;
+  }
+  
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://media.discordapp.net/attachments/789963867991703613/809970378893557831/MAC_wallpaper.png?width=1202&height=676');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .gradient {
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)); 
+  }
+  
+  .content {
+    position: relative; 
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  /* Foto de perfil */
+  .profile-pic {
+    width: 200px;
+    border-radius: 50%;
+  }
+  
+  /* Nombre y descripción */ 
+  .name {
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 10px; 
+  }
+  
+  .description {
+    font-size: 18px;
+    color: #969595;
+  }
+
+  .text .btn{
+    margin: 1em;
+  }
+
+  .text .btn a{
+    color: #000000;
+    transition: 0.2s;
+  }
+
+  .text .btn:hover{
+    background: #969595;
+  }

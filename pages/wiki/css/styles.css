@@ -1,0 +1,93 @@
+/* =========================================
+   ESTILOS DE LA WIKI LANDING PAGE
+   ========================================= */
+
+/* Limpieza base en caso de que no esté en los estilos globales */
+body {
+    background-color: #0d1117;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor central */
+.wiki-container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* Cabecera de la Wiki */
+.wiki-hero {
+    margin-top: 30%;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.wiki-hero h1 {
+    color: #ff3b3b;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.wiki-hero p {
+    color: #8b949e;
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Cuadrícula (Grid) Responsiva */
+.wiki-grid {
+    display: grid;
+    /* Esto hace la magia de adaptar las columnas al tamaño de pantalla automáticamente */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Diseño de cada Tarjeta */
+.wiki-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 30px 25px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Efecto Hover (Interacción al pasar el mouse) */
+.wiki-card:hover {
+    transform: translateY(-8px); /* La tarjeta "flota" hacia arriba */
+    border-color: #5865F2; /* Borde color Discord */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Íconos de las tarjetas */
+.wiki-card .icon-card {
+    font-size: 3.5em;
+    color: #5865F2;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.wiki-card:hover .icon-card {
+    color: #ff3b3b; /* El ícono cambia a rojo corporativo al hacer hover */
+}
+
+.wiki-card h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.5em;
+}
+
+.wiki-card p {
+    color: #8b949e;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95em;
+}
