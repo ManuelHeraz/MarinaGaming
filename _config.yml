@@ -75,3 +75,6 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+
+webmaster_verifications:
+  google: qZ-3qERmaYcJ10EjOi7VN9FgZAIkjkqYt0yCzw8tdrk
