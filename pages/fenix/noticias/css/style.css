@@ -1,38 +1,41 @@
-/******* Bootstrap Theming ********/
+/******* Bootstrap Theming (INTERVENIDO POR LA RESISTENCIA) ********/
 /*!
- * Bootstrap v4.5.3 (https://getbootstrap.com/)
- * Copyright 2011-2020 The Bootstrap Authors
- * Copyright 2011-2020 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * Bootstrap v4.5.3 modificado para Frecuencia Marina
  */
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
-  --red: #dc3545;
-  --orange: #fd7e14;
+  --red: #8b0000; /* Rojo SEDENA */
+  --orange: #ff4c4c; /* Alerta Naranja/Roja */
   --yellow: #ffc107;
   --green: #28a745;
   --teal: #20c997;
   --cyan: #17a2b8;
-  --white: #fff;
+  
+  /* A. APAGÓN GENERAL */
+  --white: #121212; /* Los fondos blancos ahora son gris oscuro */
+  --light: #1a1a1a; /* Las zonas claras son carbón */
+  --dark: #050505;  /* Negro casi absoluto */
   --gray: #6c757d;
-  --gray-dark: #343a40;
-  --info: #FFCC00;
-  --secondary: #31404B;
+  --gray-dark: #050505;
+  
+  /* B. REEMPLAZO DE LA PALETA PRINCIPAL */
+  --info: #8b0000; /* Reemplazamos el cyan brillante por Rojo SEDENA */
+  --secondary: #ff4c4c; /* Detalles secundarios en rojo alerta */
   --success: #28a745;
-  --info: #17a2b8;
-  --warning: #ffc107;
-  --danger: #dc3545;
-  --light: #FFFFFF;
-  --dark: #1E2024;
+  --warning: #ff4c4c;
+  --danger: #8b0000;
+
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Montserrat", sans-serif;
+  
+  /* C. TIPOGRAFÍA TERMINAL/MÁQUINA DE ESCRIBIR */
+  --font-family-sans-serif: "Share Tech Mono", "Courier New", Courier, monospace;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -55,13 +58,29 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-family-sans-serif); /* Aplica la fuente rebelde */
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #9A9DA2;
+  color: #b0b0b0; /* Texto gris apagado en lugar de oscuro */
   text-align: left;
-  background-color: #EDEFF4;
+  background-color: #050505; /* Fondo general oscuro */
+}
+
+/* D. EL EFECTO CRT (Transmisión Interceptada) */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 9999;
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none; /* Permite que el usuario siga haciendo clic */
+  opacity: 0.3; /* Ajusta la intensidad de las líneas de escaneo aquí (0.1 a 1) */
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -72,11 +91,15 @@ hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
+  border-top: 1px solid #333; /* Líneas divisorias oscuras y tenues */
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  text-transform: uppercase; /* Fuerza letras mayúsculas para un tono más autoritario */
+  letter-spacing: 1px;
+  color: #e0e0e0; /* Titulares ligeramente más blancos que el texto normal */
 }
 
 p {
