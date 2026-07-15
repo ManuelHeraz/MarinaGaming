@@ -80,9 +80,6 @@ const navTemplate = `
                   <a href="/MarinaGaming/pages/martv/index.html">MAR TV</a>
               </li>
               <li class="linkN">
-                  <a href="/MarinaGaming/pages/musica/index.html">Música Gamer</a>
-              </li>
-              <li class="linkN">
                   <a href="/MarinaGaming/pages/radio/index.html">Radio MAR</a>
               </li>
           </ul>
