@@ -152,7 +152,7 @@ const catalogoFenix = [
         categoria: "Vehiculos",
         precio: 40000,
         precioAntiguo: null,
-        imagen: "https://media.discordapp.net/attachments/855484413059006474/1051290892520144966/latest.png?ex=6a5973f0&is=6a582270&hm=72a44541f598e2970616be5d0022ffabfbc2d8b0125ccd9e8e89a81fe41e266a&=&format=webp&quality=lossless&width=1522&height=856g",
+        imagen: "https://static.wikia.nocookie.net/gtawiki/images/f/fb/Insurgent-GTAO-front.png",
         etiqueta: "",
         esNuevo: false
     },
@@ -265,6 +265,14 @@ const catalogoFenix = [
 ];
 
 const coleccionesFenix = [
+    {
+        // NUEVA COLECCIÓN: BOTÓN DE VER TODO
+        titulo: "Inventario",
+        subtitulo: "Catálogo Completo",
+        imagen: "https://st.depositphotos.com/49653292/59621/i/450/depositphotos_596212120-stock-photo-seattle-usa-circa-august-2022.jpg",
+        categoria: "Todo",
+        textoBoton: "Ver Todo el Arsenal"
+    },
     {
         titulo: "Seguro de vida",
         subtitulo: "Cruz Roja",
@@ -589,4 +597,74 @@ function destruirEvidencia() {
     document.getElementById('discord-id').value = '';
     document.getElementById('texto-carga').style.color = "#00ff00";
     document.getElementById('texto-carga').innerText = "Estableciendo conexión segura...";
+}
+// =========================================================
+// MOTOR DE BÚSQUEDA FENIX (CON FILTRO DE CATEGORÍAS)
+// =========================================================
+
+function buscarEnCatalogo(event) {
+    event.preventDefault(); 
+
+    const termino = document.getElementById('input-buscador').value.toLowerCase().trim();
+    const categoriaFiltro = document.getElementById('select-categoria').value;
+    const contenedor = document.getElementById('grid-productos');
+    let htmlProductos = '';
+
+    // 1. Filtrar primero por la categoría seleccionada en el menú
+    let resultados = catalogoFenix;
+    if (categoriaFiltro !== "Todo") {
+        resultados = resultados.filter(p => p.categoria === categoriaFiltro);
+    }
+
+    // 2. Filtrar adicionalmente por el texto ingresado (si escribió algo)
+    if (termino !== "") {
+        resultados = resultados.filter(p => p.nombre.toLowerCase().includes(termino));
+    }
+
+    // 3. Si el usuario buscó con todo vacío y la categoría en "Todo", recargamos la tienda normal
+    if (termino === "" && categoriaFiltro === "Todo") {
+        cargarTienda('Todo');
+        return;
+    }
+
+    // 4. Si no hay coincidencias (Ej. Buscó "Rhino" en la categoría "Audio")
+    if (resultados.length === 0) {
+        contenedor.innerHTML = '<div class="col-md-12 text-center" style="margin: 50px 0;"><h4 style="color:#D10024;">[!] ERROR: NO SE ENCONTRÓ EQUIPAMIENTO COINCIDENTE</h4><button class="primary-btn mt-3" onclick="cargarTienda(\'Todo\'); document.getElementById(\'input-buscador\').value=\'\'; document.getElementById(\'select-categoria\').value=\'Todo\';">VER TODO EL ARSENAL</button></div>';
+        document.getElementById('grid-productos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+    }
+
+    // 5. Dibujar los productos filtrados
+    resultados.forEach(producto => {
+        let labels = '';
+        if (producto.etiqueta !== "" || producto.esNuevo) {
+            labels = `<div class="product-label">
+                        ${producto.etiqueta ? `<span class="sale">${producto.etiqueta}</span>` : ''}
+                        ${producto.esNuevo ? `<span class="new">Nuevo</span>` : ''}
+                      </div>`;
+        }
+
+        htmlProductos += `
+        <div class="col-md-4 col-xs-6">
+            <div class="product">
+                <div class="product-img">
+                    <img src="${producto.imagen}" alt="${producto.nombre}" style="height: 200px; object-fit: cover;">
+                    ${labels}
+                </div>
+                <div class="product-body">
+                    <p class="product-category">${producto.categoria}</p>
+                    <h3 class="product-name"><a href="#">${producto.nombre}</a></h3>
+                    <h4 class="product-price">$${producto.precio.toLocaleString('en-US')} 
+                        ${producto.precioAntiguo ? `<del class="product-old-price">$${producto.precioAntiguo.toLocaleString('en-US')}</del>` : ''}
+                    </h4>
+                </div>
+                <div class="add-to-cart">
+                    <button class="add-to-cart-btn" onclick="agregarAlCarrito(${producto.id})"><i class="fa fa-shopping-cart"></i> Adquirir</button>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    contenedor.innerHTML = htmlProductos;
+    document.getElementById('grid-productos').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }

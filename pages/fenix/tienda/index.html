@@ -14,9 +14,47 @@
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="/MarinaGaming/assets/navbar/css/style.css">
         <link rel="stylesheet" href="/MarinaGaming/assets/footer/css/style.css">
+
+        <!-- ========================================== -->
+        <!-- PARCHES TÁCTICOS PARA MÓVILES Y NAVBAR -->
+        <!-- ========================================== -->
+        <style>
+            /* 1. Espacio para respetar tu Navbar oficial */
+            header {
+                margin-top: 80px; /* Ajusta este número si tu navbar es más gruesa */
+            }
+
+            @media only screen and (max-width: 767px) {
+                /* Ajuste de espacio específico para celulares */
+                header {
+                    margin-top: 60px;
+                }
+                
+                /* 2. Forzar la visibilidad del botón "Añadir al carrito" en móviles */
+                .product .add-to-cart {
+                    position: relative !important;
+                    transform: none !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    z-index: 1;
+                    padding: 15px 0 !important;
+                    background: transparent !important;
+                }
+                
+                .product .add-to-cart-btn {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+
+                /* Hace que el recuadro del producto sea un poco más alto para acomodar el botón visible */
+                .product {
+                    padding-bottom: 10px;
+                }
+            }
+        </style>
     </head>
     <body>
-		    <nav id="navbar"></nav>
+            <nav id="navbar"></nav>
         <!-- HEADER -->
         <header>
             <!-- TOP HEADER -->
@@ -25,7 +63,7 @@
                     <ul class="header-links pull-left">
                         <li><a href="#"><i class="fa fa-phone"></i> +52-01800-MARINA-GAMING</a></li>
                         <li><a href="#"><i class="fa fa-envelope-o"></i> FENIX@roleplay.com</a></li>
-                        <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stone</a></li>
+                        <li><a href="#"><i class="fa fa-map-marker"></i> Nota: tienda de dopamina</a></li>
                     </ul>
                     <ul class="header-links pull-right">
                         <li><a href="#"><i class="fa fa-dollar"></i> MXN</a></li>
@@ -52,12 +90,21 @@
                         <!-- SEARCH BAR -->
                         <div class="col-md-6">
                             <div class="header-search">
-                                <form>
-                                    <select class="input-select">
-                                        <option value="0">TODO</option>
+                                <form onsubmit="buscarEnCatalogo(event)">
+                                    <!-- Añadimos un ID al select para conectarlo al sistema de búsqueda -->
+                                    <select class="input-select" id="select-categoria">
+                                        <option value="Todo">TODO</option>
+                                        <option value="Armas">Armas</option>
+                                        <option value="Vehiculos">Vehículos</option>
+                                        <option value="Servicios">Servicios</option>
+                                        <option value="PCs Gamer">Hardware</option>
+                                        <option value="Laptops">Laptops</option>
+                                        <option value="Consolas">Consolas</option>
+                                        <option value="Audifonos">Audio</option>
+                                        <option value="Figuras">Coleccionables</option>
                                     </select>
-                                    <input class="input" placeholder="Escribe lo que buscas">
-                                    <button class="search-btn">Buscar</button>
+                                    <input class="input" id="input-buscador" placeholder="Busca armas, vehículos, PCs...">
+                                    <button type="submit" class="search-btn">Buscar</button>
                                 </form>
                             </div>
                         </div>
@@ -93,7 +140,6 @@
                                         </div>
                                         <div class="cart-btns">
                                             <a href="#" onclick="vaciarCarrito(event)">Vaciar Lista</a>
-                                            <!-- Aquí corregimos el llamado a la Terminal -->
                                             <a href="#" onclick="abrirCheckout(event)" style="background-color: #D10024; color: white;">Pagar <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
                                     </div>
@@ -102,7 +148,8 @@
 
                                 <!-- Menu Toogle -->
                                 <div class="menu-toggle">
-                                    <a href="#">
+                                    <!-- SOLUCIÓN: Agregamos el onclick nativo para alternar la clase active en el menú responsive -->
+                                    <a href="#" onclick="event.preventDefault(); document.getElementById('responsive-nav').classList.toggle('active');">
                                         <i class="fa fa-bars"></i>
                                         <span>Menu</span>
                                     </a>
@@ -123,15 +170,16 @@
             <div class="container">
                 <div id="responsive-nav">
                     <!-- NAV -->
+                    <!-- SOLUCIÓN: Cada vez que tocan un filtro, el menú móvil se cierra automáticamente -->
                     <ul class="main-nav nav navbar-nav">
-    <li><a href="#" onclick="aplicarFiltro(event, 'Todo')">Inicio</a></li>
-    <li><a href="#" onclick="aplicarFiltro(event, 'PCs Gamer')">Hardware</a></li>
-    <li><a href="#" onclick="aplicarFiltro(event, 'Consolas')">Consolas</a></li>
-    <li><a href="#" onclick="aplicarFiltro(event, 'Audifonos')">Audio</a></li>
-    <li><a href="#" onclick="aplicarFiltro(event, 'Figuras')">Coleccionables</a></li>
-    <li><a href="#" onclick="aplicarFiltro(event, 'Armas')">Armas</a></li>
-    <li><a href="#" onclick="aplicarFiltro(event, 'Vehiculos')">Vehiculos</a></li>
-</ul>
+                        <li><a href="#" onclick="aplicarFiltro(event, 'Todo'); document.getElementById('responsive-nav').classList.remove('active');">Inicio</a></li>
+                        <li><a href="#" onclick="aplicarFiltro(event, 'PCs Gamer'); document.getElementById('responsive-nav').classList.remove('active');">Hardware</a></li>
+                        <li><a href="#" onclick="aplicarFiltro(event, 'Consolas'); document.getElementById('responsive-nav').classList.remove('active');">Consolas</a></li>
+                        <li><a href="#" onclick="aplicarFiltro(event, 'Audifonos'); document.getElementById('responsive-nav').classList.remove('active');">Audio</a></li>
+                        <li><a href="#" onclick="aplicarFiltro(event, 'Figuras'); document.getElementById('responsive-nav').classList.remove('active');">Coleccionables</a></li>
+                        <li><a href="#" onclick="aplicarFiltro(event, 'Armas'); document.getElementById('responsive-nav').classList.remove('active');">Armas</a></li>
+                        <li><a href="#" onclick="aplicarFiltro(event, 'Vehiculos'); document.getElementById('responsive-nav').classList.remove('active');">Vehiculos</a></li>
+                    </ul>
                     <!-- /NAV -->
                 </div>
             </div>
@@ -189,7 +237,7 @@
         </div>
         <!-- /MAIN STORE SECTION -->
 
-		
+        
     <footer id="footer"></footer>
 
 
@@ -264,12 +312,12 @@
         <!-- /OVERLAY -->
 
         <!-- jQuery Plugins -->
-    	<script src="/MarinaGaming/assets/navbar/js/navbar.js"></script>
+        <script src="/MarinaGaming/assets/navbar/js/navbar.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/tienda.js"></script>
-		<script src="/MarinaGaming/assets/footer/js/footer.js"></script>
+        <script src="/MarinaGaming/assets/footer/js/footer.js"></script>
 
     </body>
 </html>
