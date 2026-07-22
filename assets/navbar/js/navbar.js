@@ -15,6 +15,10 @@ const navTemplate = `
         <li class="linkN">
           <a href="/MarinaGaming/index.html#inicio">Inicio</a> 
         </li>
+
+        <li class="linkN">
+          <a href="/MarinaGaming/pages/notigaming/index.html">Noticias Gaming</a> 
+        </li>
         
         <li class="dropdown">
           <div>
