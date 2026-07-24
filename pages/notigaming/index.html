@@ -189,6 +189,45 @@
         }
 
         .modal-text strong { color: #fff; }
+
+        /* ==========================================
+           NUEVO: RESPONSIVE DESIGN PARA MÓVILES
+           ========================================== */
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr; /* Fuerza un solo pilar vertical */
+                gap: 15px; /* Reduce el espacio entre tarjetas */
+            }
+
+            .news-section {
+                padding: 20px 3%; /* Ajusta el margen lateral para aprovechar la pantalla */
+            }
+
+            .news-header h1 {
+                font-size: 2rem; /* Achica un poco el título principal */
+            }
+
+            .modal-content {
+                width: 95%; /* La ventana emergente ocupa casi toda la pantalla */
+            }
+
+            .modal-body-container {
+                padding: 20px; /* Menos espacio interior para que quepa más texto */
+            }
+
+            .modal-img {
+                height: 200px; /* Hace la imagen de cabecera más corta en celular */
+            }
+
+            .close-button {
+                top: 10px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 30px;
+                font-size: 30px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -199,7 +238,7 @@
     <div class="main-content news-section">
         <div class="news-header">
             <h1>Marina Gaming Noticias</h1>
-            <p>Las noticias mas relevantes del mundo del Gaming para tí, gracias a MARbot</p>
+            <p>Las noticias más relevantes del mundo del Gaming para ti, gracias a MARbot</p>
         </div>
 
         <div id="news-grid" class="news-grid">
@@ -242,6 +281,13 @@
             "https://lh3.google.com/u/2/d/1pHYmfsUzCvlM0NTFGbBGWEE9XYbNnhs7=w1878-h928-iv1",
             "https://lh3.google.com/u/2/d/1WZMWNKjEep5ygYyNlJWKhau2XFw-fyXN=w1878-h928-iv1",
             "https://lh3.google.com/u/2/d/1ljoaWXbwVw9GcUYatL431TNBRsTIChlI=w1878-h928-iv1",
+            "https://lacasadellafibra.com/cdn/shop/files/gaming-mural-wallpaper-playstation-controller-with-vibrant-colors-45XYZ789-6.jpg",
+            "https://static.vecteezy.com/system/resources/thumbnails/070/716/094/small/modern-gaming-room-featuring-led-lighting-dual-monitors-and-vibrant-design-photo.jpg",
+            "https://wallpapercg.com/media/ts_2x/851.webp",
+            "https://img.magnific.com/free-photo/ai-powered-device-concept_23-2151924130.jpg",
+            "https://images2.alphacoders.com/107/thumb-1920-107892.jpg",
+            "https://i.etsystatic.com/50555474/r/il/126249/5784055010/il_570xN.5784055010_dg5f.jpg",
+            "https://img.magnific.com/free-vector/eye-catching-electronic-remote-controller-background-with-text-space_1017-54739.jpg",
             "https://lh3.google.com/u/2/d/1ISIqcBVeLIKXylN3_oM-3eYJFWoQTTRx=w1878-h928-iv1"
         ];
 
