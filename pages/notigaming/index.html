@@ -298,10 +298,34 @@
         // Función principal para extraer la inteligencia de la base de datos
         async function cargarNoticias() {
             const grid = document.getElementById('news-grid');
+            
+            // 1. Estado de Carga (Crucial para servidores gratuitos en Render)
+            grid.innerHTML = `
+                <div style="text-align:center; grid-column: 1 / -1; padding: 40px;">
+                    <i class="fa-solid fa-satellite-dish fa-spin" style="font-size: 2rem; color: #0099FF; margin-bottom: 15px;"></i>
+                    <p>Estableciendo conexión con MARbot...<br>
+                    <span style="font-size: 0.85rem; color: #aaa;">(Si el servidor estaba inactivo, esto puede tardar hasta 60 segundos)</span></p>
+                </div>
+            `;
+
             try {
                 // Hacemos el ping a tu API en Render
                 const response = await fetch('https://marbot-w8qd.onrender.com/api/noticias');
+                
+                // 2. Interceptar Errores HTTP Reales
+                if (!response.ok) {
+                    throw new Error(`Fallo de conexión en el servidor remoto. Código HTTP: ${response.status}`);
+                }
+
                 const noticias = await response.json();
+                
+                // Limpiamos el Loader
+                grid.innerHTML = '';
+
+                // 3. Validación de estructura de datos
+                if (!Array.isArray(noticias)) {
+                    throw new Error('Formato de datos corrupto: Se esperaba un arreglo (Array).');
+                }
 
                 if(noticias.length === 0) {
                     grid.innerHTML = '<p style="text-align:center; grid-column: 1 / -1;">Los escáneres están vacíos. Aún no hay noticias almacenadas.</p>';
@@ -313,30 +337,22 @@
                     let textoOriginal = nota.texto;
                     let tituloNoticia = "Reporte de Marina Gaming";
 
-                    // 1. Extraemos el título (Gemini siempre lo pone entre ** al principio)
                     const matchTitulo = textoOriginal.match(/\*\*(.*?)\*\*/);
                     if (matchTitulo) {
-                        tituloNoticia = matchTitulo[1]; // Guardamos el título limpio
-                        // Borramos esa primera línea del cuerpo del texto para no repetirla
+                        tituloNoticia = matchTitulo[1]; 
                         textoOriginal = textoOriginal.replace(/\*\*.*?\*\*/, '').trim(); 
                     }
 
-                    // 2. Formateamos el resto del texto (convertir ** a negritas y \n a saltos de línea HTML)
                     let cuerpoFormateado = textoOriginal.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                     cuerpoFormateado = cuerpoFormateado.replace(/\n/g, '<br>');
 
-                    // 3. Generamos la fecha exacta y hora de la Ciudad de México
                     const fechaObj = new Date(nota.fecha);
                     const opcionesFecha = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'America/Mexico_City' };
                     const fechaLegible = fechaObj.toLocaleDateString('es-MX', opcionesFecha);
 
-                    // 4. Elegimos una imagen de portada al azar
                     const imagenAleatoria = bancoDeImagenes[Math.floor(Math.random() * bancoDeImagenes.length)];
-
-                    // 5. Creamos un resumen corto para la tarjeta (solo los primeros 130 caracteres)
                     const resumenCorto = textoOriginal.replace(/<br>/g, ' ').substring(0, 130) + "...";
 
-                    // 6. Construimos la tarjeta visual HTML
                     const card = document.createElement('div');
                     card.className = 'news-card';
                     card.innerHTML = `
@@ -352,18 +368,26 @@
                         </div>
                     `;
 
-                    // 7. Le decimos a la tarjeta que abra el Modal al hacerle clic
                     card.addEventListener('click', () => {
                         abrirNoticia(tituloNoticia, cuerpoFormateado, imagenAleatoria, fechaLegible);
                     });
 
-                    // Añadimos la tarjeta al grid de la página
                     grid.appendChild(card);
                 });
 
             } catch (error) {
-                console.error('Interferencia de señal:', error);
-                grid.innerHTML = '<p style="color:red; text-align:center; grid-column: 1 / -1;">Error de enlace: No se pudo contactar con los servidores de MARbot.</p>';
+                // 4. Reporte de error detallado en consola para depuración
+                console.error('Interferencia de señal con MARbot:', error.message);
+                
+                // Feedback visual para el usuario
+                grid.innerHTML = `
+                    <div style="text-align:center; grid-column: 1 / -1; background: rgba(255,0,0,0.1); padding: 20px; border: 1px solid #ff3333; border-radius: 8px;">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: #ff3333; font-size: 2rem; margin-bottom: 10px;"></i>
+                        <h3 style="color: #ff3333; margin-top: 0;">Error de Comunicación</h3>
+                        <p>No se pudo contactar con los servidores de MARbot.</p>
+                        <p style="font-size: 0.85rem; color: #aaa; margin-top: 10px;">Detalle técnico: ${error.message}</p>
+                    </div>
+                `;
             }
         }
 
