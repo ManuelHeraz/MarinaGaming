@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,201 @@
     <link rel="stylesheet" href="/MarinaGaming/assets/navbar/css/style.css">
     <link rel="stylesheet" href="/MarinaGaming/assets/footer/css/style.css">
     <title>MARINA GAMING RADIO</title>
+
+    <!-- ESTILOS TÁCTICOS DEL REPRODUCTOR DUAL -->
+    <style>
+        .mg-radio-container {
+            background: linear-gradient(145deg, #1a1a20, #25252d);
+            border: 1px solid #0099FF;
+            border-radius: 15px;
+            padding: 25px;
+            width: 80%;
+            max-width: 450px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0, 153, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .mg-radio-header {
+            text-align: center;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .mg-logo-container {
+            margin: 15px 0 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mg-radio-logo {
+            max-width: 180px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px rgba(0, 153, 255, 0.3));
+        }
+
+        .mg-radio-header h3 {
+            color: #ffffff;
+            margin: 5px 0 0 0;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+        }
+
+        .mg-live-badge {
+            background: rgba(255, 0, 50, 0.1);
+            color: #ff3366;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 0, 50, 0.3);
+        }
+
+        .mg-live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ff3366;
+            border-radius: 50%;
+            animation: pulse-red 1.5s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(255, 51, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+        }
+
+        /* =========================================
+           SELECTOR DE SEÑAL (TABS)
+           ========================================= */
+        .mg-source-selector {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .mg-source-selector p {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .mg-tabs {
+            display: flex;
+            background: #111;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .mg-tab {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            color: #888;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .mg-tab.active {
+            background: #0099FF;
+            color: #fff;
+        }
+
+        .mg-player-view {
+            width: 100%;
+            display: none; /* Oculto por defecto */
+            animation: fadeIn 0.4s ease;
+        }
+
+        .mg-player-view.active {
+            display: block; /* Solo se muestra el activo */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================
+           CONTROLES NATIVOS (Opción 2)
+           ========================================= */
+        .mg-radio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            padding-top: 15px;
+        }
+
+        .mg-btn {
+            background: none;
+            border: none;
+            color: #0099FF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .mg-btn:hover {
+            color: #00ccff;
+            transform: scale(1.1);
+            text-shadow: 0 0 15px rgba(0, 153, 255, 0.6);
+        }
+
+        .mg-btn .material-symbols-outlined { font-size: 65px; }
+
+        .mg-volume-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #aaa;
+        }
+
+        #mg-volume-slider {
+            -webkit-appearance: none;
+            width: 120px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        #mg-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #0099FF;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        @media (max-width: 600px) {
+            .mg-radio-container { width: 95%; padding: 20px 15px; }
+            .mg-radio-logo { max-width: 140px; }
+            .mg-radio-controls { flex-direction: column; gap: 15px; }
+            .mg-btn .material-symbols-outlined { font-size: 55px; }
+            #mg-volume-slider { width: 150px; }
+            .mg-tabs { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
     
@@ -25,37 +220,53 @@
                 <img src="https://lh3.google.com/u/2/d/1ljoaWXbwVw9GcUYatL431TNBRsTIChlI=w1878-h928-iv1" alt="Foto Marina Gaming">
                 <img src="https://lh3.google.com/u/2/d/1ISIqcBVeLIKXylN3_oM-3eYJFWoQTTRx=w1878-h928-iv1" alt="Foto Marina Gaming">
             </div>
-            <!-- REPRODUCTOR TÁCTICO MARINA GAMING -->
+
+            <!-- REPRODUCTOR TÁCTICO MARINA GAMING (DUAL) -->
             <div class="mg-radio-container">
                 <div class="mg-radio-header">
                     <span class="mg-live-badge"><span class="mg-live-dot"></span> EN VIVO</span>
-                    
-                    <!-- Logo de la Radio -->
                     <div class="mg-logo-container">
                         <img src="https://lh3.google.com/u/1/d/1RrSm9SWn_o_BS3pY_H-23IIEbSRxgB1u=w2932-h2122-iv1?auditContext=forDisplay" alt="Logo Marina Gaming Radio" class="mg-radio-logo">
                     </div>
-                    
                     <h3>MARINA GAMING RADIO</h3>
                 </div>
-                
-                <!-- Audio oculto (sin el atributo 'controls') -->
-                <audio id="marina-player" preload="none">
-                    <source src="https://stream.zeno.fm/npfaquclng1vv" type="audio/mpeg">
-                </audio>
 
-                <div class="mg-radio-controls">
-                    <!-- Botón Play/Stop -->
-                    <button id="mg-play-btn" class="mg-btn" aria-label="Reproducir Radio">
-                        <span class="material-symbols-outlined">play_circle</span>
-                    </button>
-                    
-                    <!-- Control de Volumen -->
-                    <div class="mg-volume-wrapper">
-                        <span class="material-symbols-outlined" id="mg-vol-icon">volume_up</span>
-                        <input type="range" id="mg-volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen">
+                <!-- Selector de Opciones -->
+                <div class="mg-source-selector">
+                    <p>Elige tu método de conexión:</p>
+                    <div class="mg-tabs">
+                        <button class="mg-tab active" data-target="view-iframe">Opción 1: Zeno (Seguro)</button>
+                        <button class="mg-tab" data-target="view-native">Opción 2: Reproductor Nativo</button>
                     </div>
                 </div>
+                
+                <!-- VISTA 1: Iframe Híbrido (Activo por defecto) -->
+                <div id="view-iframe" class="mg-player-view active">
+                    <div style="width: 100%; display: flex; justify-content: center; overflow: hidden; border-radius: 8px;">
+                        <iframe id="zeno-iframe" src="https://zeno.fm/player/marina-gaming-radio" width="100%" height="200" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+
+                <!-- VISTA 2: Reproductor Nativo -->
+                <div id="view-native" class="mg-player-view">
+                    <audio id="marina-player" preload="none">
+                        <source src="https://stream.zeno.fm/npfaquclng1vv" type="audio/mpeg">
+                    </audio>
+
+                    <div class="mg-radio-controls">
+                        <button id="mg-play-btn" class="mg-btn" aria-label="Reproducir Radio">
+                            <span class="material-symbols-outlined">play_circle</span>
+                        </button>
+                        
+                        <div class="mg-volume-wrapper">
+                            <span class="material-symbols-outlined" id="mg-vol-icon">volume_up</span>
+                            <input type="range" id="mg-volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen">
+                        </div>
+                    </div>
+                </div>
+
             </div>  
+
             <div class="boton">            
                 <button>Unete al Discord</button>
             </div>
@@ -66,6 +277,7 @@
             </a>
         </div>
     </div>
+
     <div class="visualizer">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -77,52 +289,82 @@
         <div class="bar"></div>
     </div>
 
-
-
     <footer id="footer"></footer>
     <script src="https://kit.fontawesome.com/8f703f9e9a.js" crossorigin="anonymous"></script>
     <script src="/MarinaGaming/assets/navbar/js/navbar.js"></script>
     <script src="/MarinaGaming/assets/navbar/js/main.js"></script>
     <script src="/MarinaGaming/assets/footer/js/footer.js"></script>
+    
+    <!-- LÓGICA DEL REPRODUCTOR DUAL -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Elementos de UI
+        const tabs = document.querySelectorAll('.mg-tab');
+        const views = document.querySelectorAll('.mg-player-view');
+        
+        // Elementos de Audio
+        const zenoIframe = document.getElementById('zeno-iframe');
         const audio = document.getElementById('marina-player');
         const playBtn = document.getElementById('mg-play-btn');
         const playIcon = playBtn.querySelector('.material-symbols-outlined');
         const volSlider = document.getElementById('mg-volume-slider');
         const volIcon = document.getElementById('mg-vol-icon');
 
-        // URL pura de tu estación
         const streamUrl = "https://stream.zeno.fm/npfaquclng1vv";
         let isPlaying = false;
 
-        // Lógica de Reproducción
+        // 1. Lógica para cambiar entre pestañas (Tabs)
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Quitar clase activa de todas
+                tabs.forEach(t => t.classList.remove('active'));
+                views.forEach(v => v.classList.remove('active'));
+
+                // Poner clase activa a la seleccionada
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+
+                // LÓGICA DE SEGURIDAD (Apagar el audio del otro reproductor)
+                if (targetId === 'view-native') {
+                    // Si pasamos al nativo, "reseteamos" el iframe para que deje de sonar
+                    const iframeSrc = zenoIframe.src;
+                    zenoIframe.src = iframeSrc; 
+                } else if (targetId === 'view-iframe') {
+                    // Si pasamos al iframe, pausamos y destruimos nuestro reproductor nativo
+                    audio.pause();
+                    audio.src = ""; 
+                    audio.load();
+                    playIcon.textContent = 'play_circle';
+                    isPlaying = false;
+                }
+            });
+        });
+
+        // 2. Lógica de Reproducción del Nativo
         playBtn.addEventListener('click', () => {
             if (isPlaying) {
-                // Al pausar, detenemos y "limpiamos" el audio para no consumir datos
                 audio.pause();
                 audio.src = ""; 
                 audio.load();
-                
                 playIcon.textContent = 'play_circle';
                 isPlaying = false;
             } else {
-                // Al reproducir, reconectamos a la señal en vivo fresca
                 audio.src = streamUrl;
-                playIcon.textContent = 'hourglass_empty'; // Ícono de cargando
+                playIcon.textContent = 'hourglass_empty';
                 
                 audio.play().then(() => {
-                    playIcon.textContent = 'stop_circle'; // En radio en vivo tiene más sentido un Stop que un Pause
+                    playIcon.textContent = 'stop_circle';
                     isPlaying = true;
                 }).catch(err => {
                     console.error("Error en la señal:", err);
                     playIcon.textContent = 'play_circle';
-                    alert("No se pudo conectar a la señal de Marina Gaming Radio.");
+                    alert("No se pudo conectar a la señal de Marina Gaming Radio. Si esto persiste, por favor utiliza la Opción 1.");
                 });
             }
         });
 
-        // Lógica de Volumen
+        // 3. Lógica de Volumen del Nativo
         volSlider.addEventListener('input', (e) => {
             const vol = parseFloat(e.target.value);
             audio.volume = vol;
@@ -136,6 +378,6 @@
             }
         });
     });
-</script>
+    </script>
 </body>
 </html>
