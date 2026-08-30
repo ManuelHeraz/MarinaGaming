@@ -194,6 +194,42 @@
             transition: background 0.3s;
         }
 
+        /* =========================================
+           ALERTAS E INFORMACIÓN (NUEVO)
+           ========================================= */
+        .mg-alerts-container {
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mg-alert {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #ccc;
+            border-left: 4px solid #555;
+            text-align: left;
+        }
+
+        .mg-alert-warning {
+            border-left-color: #ff3366;
+        }
+
+        .mg-alert-discord {
+            border-left-color: #00ccff;
+        }
+
+        .mg-alert strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 600px) {
             .mg-radio-container { width: 95%; padding: 20px 15px; }
             .mg-radio-logo { max-width: 140px; }
@@ -273,10 +309,22 @@
                     </div>
                 </div>
 
+                <!-- ALERTAS E INFORMACIÓN -->
+                <div class="mg-alerts-container">
+                    <div class="mg-alert mg-alert-warning">
+                        <strong style="color: #ff3366;">⚠️ ¿No hay audio?</strong>
+                        Tu navegador o bloqueador de anuncios (como el escudo de Opera GX) puede estar pausando la señal. Desactívalo para esta página o cambia a la Opción 1.
+                    </div>
+                    <div class="mg-alert mg-alert-discord">
+                        <strong style="color: #00ccff;">🎮 ¡Tú haces la programación!</strong>
+                        Puedes solicitar tus propias canciones entrando a nuestro servidor de Discord. Solo usa el comando <code>/play</code> del bot <strong>MARbot</strong> seguido del nombre de tu canción.
+                    </div>
+                </div>
+
             </div>  
 
             <div class="boton">            
-                <button>Unete al Discord</button>
+                <button onclick="window.open('https://discord.gg/XfqqrWNAhy', '_blank')">Unete al Discord</button>
             </div>
         </div>
         <div class="publicity">
