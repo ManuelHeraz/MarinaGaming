@@ -25,7 +25,37 @@
                 <img src="https://lh3.google.com/u/2/d/1ljoaWXbwVw9GcUYatL431TNBRsTIChlI=w1878-h928-iv1" alt="Foto Marina Gaming">
                 <img src="https://lh3.google.com/u/2/d/1ISIqcBVeLIKXylN3_oM-3eYJFWoQTTRx=w1878-h928-iv1" alt="Foto Marina Gaming">
             </div>
-            <iframe src="https://zeno.fm/player/marina-gaming-radio" width="80%" height="100%" scrolling="no"></iframe>
+            <!-- REPRODUCTOR TÁCTICO MARINA GAMING -->
+            <div class="mg-radio-container">
+                <div class="mg-radio-header">
+                    <span class="mg-live-badge"><span class="mg-live-dot"></span> EN VIVO</span>
+                    
+                    <!-- Logo de la Radio -->
+                    <div class="mg-logo-container">
+                        <img src="https://lh3.google.com/u/1/d/1RrSm9SWn_o_BS3pY_H-23IIEbSRxgB1u=w2932-h2122-iv1?auditContext=forDisplay" alt="Logo Marina Gaming Radio" class="mg-radio-logo">
+                    </div>
+                    
+                    <h3>MARINA GAMING RADIO</h3>
+                </div>
+                
+                <!-- Audio oculto (sin el atributo 'controls') -->
+                <audio id="marina-player" preload="none">
+                    <source src="https://stream.zeno.fm/npfaquclng1vv" type="audio/mpeg">
+                </audio>
+
+                <div class="mg-radio-controls">
+                    <!-- Botón Play/Stop -->
+                    <button id="mg-play-btn" class="mg-btn" aria-label="Reproducir Radio">
+                        <span class="material-symbols-outlined">play_circle</span>
+                    </button>
+                    
+                    <!-- Control de Volumen -->
+                    <div class="mg-volume-wrapper">
+                        <span class="material-symbols-outlined" id="mg-vol-icon">volume_up</span>
+                        <input type="range" id="mg-volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Volumen">
+                    </div>
+                </div>
+            </div>  
             <div class="boton">            
                 <button>Unete al Discord</button>
             </div>
@@ -54,5 +84,58 @@
     <script src="/MarinaGaming/assets/navbar/js/navbar.js"></script>
     <script src="/MarinaGaming/assets/navbar/js/main.js"></script>
     <script src="/MarinaGaming/assets/footer/js/footer.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const audio = document.getElementById('marina-player');
+        const playBtn = document.getElementById('mg-play-btn');
+        const playIcon = playBtn.querySelector('.material-symbols-outlined');
+        const volSlider = document.getElementById('mg-volume-slider');
+        const volIcon = document.getElementById('mg-vol-icon');
+
+        // URL pura de tu estación
+        const streamUrl = "https://stream.zeno.fm/npfaquclng1vv";
+        let isPlaying = false;
+
+        // Lógica de Reproducción
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                // Al pausar, detenemos y "limpiamos" el audio para no consumir datos
+                audio.pause();
+                audio.src = ""; 
+                audio.load();
+                
+                playIcon.textContent = 'play_circle';
+                isPlaying = false;
+            } else {
+                // Al reproducir, reconectamos a la señal en vivo fresca
+                audio.src = streamUrl;
+                playIcon.textContent = 'hourglass_empty'; // Ícono de cargando
+                
+                audio.play().then(() => {
+                    playIcon.textContent = 'stop_circle'; // En radio en vivo tiene más sentido un Stop que un Pause
+                    isPlaying = true;
+                }).catch(err => {
+                    console.error("Error en la señal:", err);
+                    playIcon.textContent = 'play_circle';
+                    alert("No se pudo conectar a la señal de Marina Gaming Radio.");
+                });
+            }
+        });
+
+        // Lógica de Volumen
+        volSlider.addEventListener('input', (e) => {
+            const vol = parseFloat(e.target.value);
+            audio.volume = vol;
+
+            if (vol === 0) {
+                volIcon.textContent = 'volume_off';
+            } else if (vol < 0.5) {
+                volIcon.textContent = 'volume_down';
+            } else {
+                volIcon.textContent = 'volume_up';
+            }
+        });
+    });
+</script>
 </body>
 </html>
