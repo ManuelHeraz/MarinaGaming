@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/MarinaGaming/assets/footer/css/style.css">
     <title>MARINA GAMING RADIO</title>
 
-    <!-- ESTILOS TÁCTICOS DEL REPRODUCTOR DUAL -->
+    <!-- ESTILOS TÁCTICOS DEL REPRODUCTOR TRIPLE -->
     <style>
         .mg-radio-container {
             background: linear-gradient(145deg, #1a1a20, #25252d);
@@ -105,12 +105,12 @@
 
         .mg-tab {
             flex: 1;
-            padding: 10px;
+            padding: 10px 5px;
             background: transparent;
             color: #888;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
             transition: all 0.3s;
         }
@@ -122,12 +122,12 @@
 
         .mg-player-view {
             width: 100%;
-            display: none; /* Oculto por defecto */
+            display: none;
             animation: fadeIn 0.4s ease;
         }
 
         .mg-player-view.active {
-            display: block; /* Solo se muestra el activo */
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -136,7 +136,7 @@
         }
 
         /* =========================================
-           CONTROLES NATIVOS (Opción 2)
+           CONTROLES NATIVOS (Opción 3)
            ========================================= */
         .mg-radio-controls {
             display: flex;
@@ -221,7 +221,7 @@
                 <img src="https://lh3.google.com/u/2/d/1ISIqcBVeLIKXylN3_oM-3eYJFWoQTTRx=w1878-h928-iv1" alt="Foto Marina Gaming">
             </div>
 
-            <!-- REPRODUCTOR TÁCTICO MARINA GAMING (DUAL) -->
+            <!-- REPRODUCTOR TÁCTICO MARINA GAMING (TRIPLE) -->
             <div class="mg-radio-container">
                 <div class="mg-radio-header">
                     <span class="mg-live-badge"><span class="mg-live-dot"></span> EN VIVO</span>
@@ -235,22 +235,30 @@
                 <div class="mg-source-selector">
                     <p>Elige tu método de conexión:</p>
                     <div class="mg-tabs">
-                        <button class="mg-tab active" data-target="view-iframe">Opción 1: Zeno (Seguro)</button>
-                        <button class="mg-tab" data-target="view-native">Opción 2: Reproductor Nativo</button>
+                        <button class="mg-tab active" data-target="view-tunein">Opción 1: TuneIn</button>
+                        <button class="mg-tab" data-target="view-zeno">Opción 2: Zeno</button>
+                        <button class="mg-tab" data-target="view-native">Opción 3: Nativo</button>
                     </div>
                 </div>
                 
-                <!-- VISTA 1: Iframe Híbrido (Activo por defecto) -->
-                <div id="view-iframe" class="mg-player-view active">
+                <!-- VISTA 1: TuneIn (Activo por defecto) -->
+                <div id="view-tunein" class="mg-player-view active">
                     <div style="width: 100%; display: flex; justify-content: center; overflow: hidden; border-radius: 8px;">
-                        <iframe id="zeno-iframe" src="https://zeno.fm/player/marina-gaming-radio" width="100%" height="200" frameborder="0" scrolling="no"></iframe>
+                        <iframe id="tunein-iframe" src="https://tunein.com/embed/player/s360343/" style="width:100%; height:146px;" scrolling="no" frameborder="no" allow="autoplay"></iframe>
                     </div>
                 </div>
 
-                <!-- VISTA 2: Reproductor Nativo -->
+                <!-- VISTA 2: Zeno Iframe -->
+                <div id="view-zeno" class="mg-player-view">
+                    <div style="width: 100%; display: flex; justify-content: center; overflow: hidden; border-radius: 8px;">
+                        <iframe id="zeno-iframe" src="https://zeno.fm/player/marina-gaming-radio" width="100%" height="200" frameborder="0" scrolling="no" allow="autoplay"></iframe>
+                    </div>
+                </div>
+
+                <!-- VISTA 3: Reproductor Nativo -->
                 <div id="view-native" class="mg-player-view">
                     <audio id="marina-player" preload="none">
-                        <source src="https://stream.zeno.fm/npfaquclng1vv" type="audio/mpeg">
+                        <source src="https://stream.zeno.fm/npfaquclng1vv?type=.mp3" type="audio/mpeg">
                     </audio>
 
                     <div class="mg-radio-controls">
@@ -295,7 +303,7 @@
     <script src="/MarinaGaming/assets/navbar/js/main.js"></script>
     <script src="/MarinaGaming/assets/footer/js/footer.js"></script>
     
-    <!-- LÓGICA DEL REPRODUCTOR DUAL -->
+    <!-- LÓGICA DEL REPRODUCTOR MÚLTIPLE -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Elementos de UI
@@ -303,41 +311,51 @@
         const views = document.querySelectorAll('.mg-player-view');
         
         // Elementos de Audio
+        const tuneinIframe = document.getElementById('tunein-iframe');
         const zenoIframe = document.getElementById('zeno-iframe');
         const audio = document.getElementById('marina-player');
+        
+        // Controles Nativo
         const playBtn = document.getElementById('mg-play-btn');
         const playIcon = playBtn.querySelector('.material-symbols-outlined');
         const volSlider = document.getElementById('mg-volume-slider');
         const volIcon = document.getElementById('mg-vol-icon');
 
-        const streamUrl = "https://stream.zeno.fm/npfaquclng1vv";
+        const streamUrl = "https://stream.zeno.fm/npfaquclng1vv?type=.mp3";
         let isPlaying = false;
+
+        // Función auxiliar para resetear reproductores y evitar audios superpuestos
+        function stopAllPlayersExcept(activeId) {
+            if (activeId !== 'view-tunein') {
+                tuneinIframe.src = tuneinIframe.src; // Resetea el iframe de TuneIn
+            }
+            if (activeId !== 'view-zeno') {
+                zenoIframe.src = zenoIframe.src; // Resetea el iframe de Zeno
+            }
+            if (activeId !== 'view-native' && isPlaying) {
+                audio.pause();
+                audio.src = ""; 
+                audio.load();
+                playIcon.textContent = 'play_circle';
+                isPlaying = false;
+            }
+        }
 
         // 1. Lógica para cambiar entre pestañas (Tabs)
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('data-target');
+
                 // Quitar clase activa de todas
                 tabs.forEach(t => t.classList.remove('active'));
                 views.forEach(v => v.classList.remove('active'));
 
                 // Poner clase activa a la seleccionada
                 tab.classList.add('active');
-                const targetId = tab.getAttribute('data-target');
                 document.getElementById(targetId).classList.add('active');
 
-                // LÓGICA DE SEGURIDAD (Apagar el audio del otro reproductor)
-                if (targetId === 'view-native') {
-                    // Si pasamos al nativo, "reseteamos" el iframe para que deje de sonar
-                    const iframeSrc = zenoIframe.src;
-                    zenoIframe.src = iframeSrc; 
-                } else if (targetId === 'view-iframe') {
-                    // Si pasamos al iframe, pausamos y destruimos nuestro reproductor nativo
-                    audio.pause();
-                    audio.src = ""; 
-                    audio.load();
-                    playIcon.textContent = 'play_circle';
-                    isPlaying = false;
-                }
+                // Ejecutar parada de seguridad
+                stopAllPlayersExcept(targetId);
             });
         });
 
@@ -359,7 +377,7 @@
                 }).catch(err => {
                     console.error("Error en la señal:", err);
                     playIcon.textContent = 'play_circle';
-                    alert("No se pudo conectar a la señal de Marina Gaming Radio. Si esto persiste, por favor utiliza la Opción 1.");
+                    alert("No se pudo conectar a la señal de Marina Gaming Radio. Por favor utiliza la Opción 1 (TuneIn) o la Opción 2 (Zeno).");
                 });
             }
         });
