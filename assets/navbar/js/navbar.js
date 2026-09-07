@@ -30,7 +30,7 @@ const navTemplate = `
               <a href="/MarinaGaming/index.html#sobre">Nosotros</a>
             </li>
             <li class="linkN">
-              <a href="/MarinaGaming/pages/wiki/index.html">Wiki Oficial</a>
+              <a href="https://marina-gaming.fandom.com/es/wiki/Wiki_Marina_Gaming">Wiki Oficial</a>
             </li>
             <li class="linkN">
               <a href="/MarinaGaming/pages/galeria/index.html">Galería</a>
