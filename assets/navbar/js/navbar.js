@@ -78,7 +78,7 @@ const navTemplate = `
           </div>
           <ul class="menuN">
               <li class="linkN">
-                  <a href="https://cytu.be/r/MarinaGaming" style="color: #ff3b3b; font-weight: bold;">🔴 EN VIVO</a>
+                  <a href="https://manuelheraz.github.io/MarinaGaming/pages/ENVIVO/index.html" style="color: #ff3b3b; font-weight: bold;">🔴 EN VIVO</a>
               </li>
               <li class="linkN">
                   <a href="/MarinaGaming/pages/martv/index.html">MAR TV</a>
