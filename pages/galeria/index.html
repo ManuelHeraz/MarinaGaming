@@ -1,215 +1,81 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARINA GAMING TV - En Vivo</title>
-    
-    <!-- Dependencias de Scripts y Estilos -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="/MarinaGaming/assets/navbar/css/style.css">
     <link rel="stylesheet" href="/MarinaGaming/assets/footer/css/style.css">
-
+    <title>Galeria Marina Gaming</title>
+    <link rel="icon" type="image/png" href="https://lh3.google.com/u/2/d/1Y2FY8HucV76hUs6HvRnuhPK8xUpRbQ6Z=w3000-h6501-iv1?auditContext=forDisplay">
 </head>
 <body>
-
-    <!-- NAVBAR NATIVA -->
     <nav id="navbar"></nav>
-
     <div class="main-content">
-        <div class="mg-tv-container">
-            <div class="mg-tv-header">
-                <span class="mg-live-badge"><span class="mg-live-dot"></span> EN VIVO</span>
-                <h3>MARINA GAMING TV</h3>
-                <p style="color: #aaa; font-size: 0.85rem; margin-top: 5px;">Transmisión Oficial</p>
-            </div>
-            
-            <div class="mg-video-wrapper" id="mg-video-wrapper">
-                <!-- MARCA DE AGUA COMPUESTA -->
-                <div class="mg-watermark-container">
-                    <span class="mg-watermark-text">MARINA GAMING TV</span>
-                    <img src="https://i.imgur.com/nbFSvBy.png" alt="Logo MG" class="mg-watermark-logo">
-                    <span class="mg-watermark-live"><span class="mg-live-dot-small"></span> EN VIVO</span>
+        <!-- Slider -->
+        <section class="featured-photos-slider">
+            <h2>Fotos Destacadas</h2>
+            <div class="slider-container">
+                <div class="slider">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Foto destacada 1">
+                    <img src="https://lh3.google.com/u/2/d/1WZMWNKjEep5ygYyNlJWKhau2XFw-fyXN=w1873-h955-iv1" alt="Foto destacada 2">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Foto destacada 3">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Foto destacada 4">
                 </div>
-
-                <!-- VIDEO SIN ATRIBUTO 'CONTROLS' -->
-                <video id="mg-tv-player" preload="auto" poster="https://i.imgur.com/nbFSvBy.png"></video>
-
-                <!-- NUESTROS CONTROLES PERSONALIZADOS (HUD) -->
-                <div class="mg-tv-controls" id="mg-tv-controls">
-                    <!-- Izquierda: Play/Pause y Volumen -->
-                    <div class="mg-controls-group">
-                        <button id="btn-play" class="mg-control-btn" aria-label="Reproducir/Pausar">
-                            <span class="material-symbols-outlined" id="icon-play">play_arrow</span>
-                        </button>
-                        
-                        <div class="mg-volume-wrapper">
-                            <button id="btn-mute" class="mg-control-btn" aria-label="Silenciar">
-                                <span class="material-symbols-outlined" id="icon-vol">volume_up</span>
-                            </button>
-                            <input type="range" id="mg-volume-slider" min="0" max="1" step="0.01" value="1">
-                        </div>
-                    </div>
-
-                    <!-- Derecha: PIP y Pantalla Completa -->
-                    <div class="mg-controls-group">
-                        <button id="btn-pip" class="mg-control-btn" aria-label="Picture in Picture">
-                            <span class="material-symbols-outlined">picture_in_picture_alt</span>
-                        </button>
-                        <button id="btn-fs" class="mg-control-btn" aria-label="Pantalla Completa">
-                            <span class="material-symbols-outlined" id="icon-fs">fullscreen</span>
-                        </button>
-                    </div>
+                <div class="slider-indicators">
+                    <span class="indicator active" data-index="0"></span>
+                    <span class="indicator" data-index="1"></span>
+                    <span class="indicator" data-index="2"></span>
+                    <span class="indicator" data-index="3"></span>
                 </div>
             </div>
+        </section>
 
-            <div class="mg-alerts-container">
-                <div class="mg-alert mg-alert-discord">
-                    <strong style="color: #00ccff;">🎮 Cartelera de Transmisión</strong>
-                    Únete a nuestro Discord para conocer los horarios de los streams, torneos y eventos especiales.
+        <!-- Panel de Filtros -->
+        <section class="gallery">
+            <h2>Galería</h2>
+            <div class="filter-panel">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="Cyberpunk 2077">Cyberpunk 2077</button>
+                <button class="filter-btn" data-filter="The Witcher 3">The Witcher 3</button>
+                <button class="filter-btn" data-filter="Horizon Zero Dawn">Horizon Zero Dawn</button>
+                <button class="filter-btn" data-filter="Assassin's Creed Valhalla">Assassin's Creed Valhalla</button>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-info="Autor: John Doe | Videojuego: Cyberpunk 2077">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Galería 1">
+                </div>
+                <div class="gallery-item" data-info="Autor: Jane Smith | Videojuego: The Witcher 3">
+                    <img src="https://lh3.google.com/u/2/d/1WZMWNKjEep5ygYyNlJWKhau2XFw-fyXN=w1873-h955-iv1" alt="Galería 2">
+                </div>
+                <div class="gallery-item" data-info="Autor: Alex Johnson | Videojuego: Horizon Zero Dawn">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Galería 3">
+                </div>
+                <div class="gallery-item" data-info="Autor: Sarah Lee | Videojuego: Assassin's Creed Valhalla">
+                    <img src="https://lh3.google.com/u/2/d/1S0QghSmJ6BAcnh-qrm6gMZQz_qynE5Nb=w1873-h955-iv1" alt="Galería 4">
                 </div>
             </div>
-        </div>  
+        </section>
+
+        <!-- Modal -->
+        <div class="modal" id="galleryModal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content">
+                <img class="modal-image" id="modalImage">
+                <div class="info-panel" id="infoPanel">
+                    <h3>Detalles</h3>
+                    <p id="infoText"></p>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- FOOTER NATIVO -->
     <footer id="footer"></footer>
-
-    <!-- SCRIPTS ESTRUCTURALES -->
     <script src="https://kit.fontawesome.com/8f703f9e9a.js" crossorigin="anonymous"></script>
     <script src="/MarinaGaming/assets/navbar/js/navbar.js"></script>
     <script src="/MarinaGaming/assets/navbar/js/main.js"></script>
     <script src="/MarinaGaming/assets/footer/js/footer.js"></script>
-    
-    <!-- LÓGICA DE STREAMING Y CONTROLES -->
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // --- 1. CONFIGURACIÓN DEL STREAM (HLS.js) ---
-        const video = document.getElementById('mg-tv-player');
-        const streamUrl = "https://pub-3404987dd8c841489f9a817427cea40d.r2.dev/tv-envivo/index.m3u8";
-
-        if (Hls.isSupported()) {
-            const hls = new Hls({ lowLatencyMode: true, backBufferLength: 90 });
-            hls.loadSource(streamUrl);
-            hls.attachMedia(video);
-            
-            hls.on(Hls.Events.ERROR, function (event, data) {
-                if (data.fatal) {
-                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
-                        hls.startLoad();
-                    } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-                        hls.recoverMediaError();
-                    } else {
-                        hls.destroy();
-                    }
-                }
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = streamUrl; // Fallback iOS
-        }
-
-        // --- 2. LÓGICA DE LOS CONTROLES PERSONALIZADOS ---
-        const videoWrapper = document.getElementById('mg-video-wrapper');
-        const btnPlay = document.getElementById('btn-play');
-        const iconPlay = document.getElementById('icon-play');
-        const btnMute = document.getElementById('btn-mute');
-        const iconVol = document.getElementById('icon-vol');
-        const volSlider = document.getElementById('mg-volume-slider');
-        const btnPip = document.getElementById('btn-pip');
-        const btnFs = document.getElementById('btn-fs');
-        const iconFs = document.getElementById('icon-fs');
-        
-        let preMuteVolume = 1;
-
-        // Play / Pause
-        btnPlay.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-                iconPlay.textContent = 'pause';
-            } else {
-                video.pause();
-                iconPlay.textContent = 'play_arrow';
-            }
-        });
-
-        // Actualizar botón si el video se pausa por otra razón
-        video.addEventListener('play', () => iconPlay.textContent = 'pause');
-        video.addEventListener('pause', () => iconPlay.textContent = 'play_arrow');
-
-        // Control de Volumen y Mute
-        volSlider.addEventListener('input', (e) => {
-            video.volume = e.target.value;
-            updateVolumeIcon(video.volume);
-        });
-
-        btnMute.addEventListener('click', () => {
-            if (video.volume > 0) {
-                preMuteVolume = video.volume;
-                video.volume = 0;
-                volSlider.value = 0;
-            } else {
-                video.volume = preMuteVolume;
-                volSlider.value = preMuteVolume;
-            }
-            updateVolumeIcon(video.volume);
-        });
-
-        function updateVolumeIcon(vol) {
-            if (vol === 0) iconVol.textContent = 'volume_off';
-            else if (vol < 0.5) iconVol.textContent = 'volume_down';
-            else iconVol.textContent = 'volume_up';
-        }
-
-        // Picture in Picture (PIP)
-        btnPip.addEventListener('click', async () => {
-            if (document.pictureInPictureElement) {
-                await document.exitPictureInPicture();
-            } else if (document.pictureInPictureEnabled) {
-                await video.requestPictureInPicture();
-            } else {
-                alert("Tu navegador no soporta Picture-in-Picture.");
-            }
-        });
-
-        // Pantalla Completa y Rotación
-        btnFs.addEventListener('click', () => {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                if (videoWrapper.requestFullscreen) {
-                    videoWrapper.requestFullscreen().then(lockScreen);
-                } else if (videoWrapper.webkitRequestFullscreen) {
-                    videoWrapper.webkitRequestFullscreen();
-                    lockScreen();
-                }
-            } else {
-                if (document.exitFullscreen) document.exitFullscreen();
-                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-            }
-        });
-
-        function lockScreen() {
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape').catch(() => {
-                    console.log("Forzar rotación no soportado.");
-                });
-            }
-        }
-
-        function updateFsState() {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                iconFs.textContent = 'fullscreen';
-                if (screen.orientation && screen.orientation.unlock) {
-                    screen.orientation.unlock();
-                }
-            } else {
-                iconFs.textContent = 'fullscreen_exit';
-            }
-        }
-
-        document.addEventListener('fullscreenchange', updateFsState);
-        document.addEventListener('webkitfullscreenchange', updateFsState);
-    });
-    </script>
+    <script src="js/slider.js"></script>
+    <script src="js/gallery.js"></script> <!-- Nuevo archivo para la galería -->
 </body>
 </html>

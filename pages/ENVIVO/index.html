@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARINA GAMING TV - En Vivo</title>
     
-    <!-- Librería crítica para leer .m3u8 en Chrome/Edge/Opera -->
+    <!-- Dependencias de Scripts y Estilos -->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
-    
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Aquí iría tu link al CSS de la TV que te doy en el paso 2 -->
-    <style>
-        /* Pega aquí el CSS del Paso 2 si no usas archivo externo */
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/MarinaGaming/assets/navbar/css/style.css">
+    <link rel="stylesheet" href="/MarinaGaming/assets/footer/css/style.css">
 </head>
 <body>
 
+    <!-- NAVBAR NATIVA -->
+    <nav id="navbar"></nav>
+
     <div class="main-content">
-        <!-- REPRODUCTOR TÁCTICO MARINA GAMING TV -->
         <div class="mg-tv-container">
             <div class="mg-tv-header">
                 <span class="mg-live-badge"><span class="mg-live-dot"></span> EN VIVO</span>
@@ -25,26 +25,45 @@
                 <p style="color: #aaa; font-size: 0.85rem; margin-top: 5px;">Transmisión Oficial</p>
             </div>
             
-            <!-- Contenedor del Video -->
             <div class="mg-video-wrapper" id="mg-video-wrapper">
-                
-                <!-- LA MARCA DE AGUA COMPUESTA (TEXTO + LOGO + TEXTO) -->
+                <!-- MARCA DE AGUA COMPUESTA -->
                 <div class="mg-watermark-container">
                     <span class="mg-watermark-text">MARINA GAMING TV</span>
                     <img src="https://i.imgur.com/nbFSvBy.png" alt="Logo MG" class="mg-watermark-logo">
                     <span class="mg-watermark-live"><span class="mg-live-dot-small"></span> EN VIVO</span>
                 </div>
 
-                <!-- Botón táctico de Pantalla Completa -->
-                <button id="mg-fullscreen-btn" class="mg-fullscreen-btn" aria-label="Pantalla Completa">
-                    <span class="material-symbols-outlined">fullscreen</span>
-                </button>
+                <!-- VIDEO SIN ATRIBUTO 'CONTROLS' -->
+                <video id="mg-tv-player" preload="auto" poster="https://i.imgur.com/nbFSvBy.png"></video>
 
-                <!-- Video con controles nativos (corregido el poster) -->
-                <video id="mg-tv-player" controls preload="auto" poster="https://i.imgur.com/nbFSvBy.png"></video>
+                <!-- NUESTROS CONTROLES PERSONALIZADOS (HUD) -->
+                <div class="mg-tv-controls" id="mg-tv-controls">
+                    <!-- Izquierda: Play/Pause y Volumen -->
+                    <div class="mg-controls-group">
+                        <button id="btn-play" class="mg-control-btn" aria-label="Reproducir/Pausar">
+                            <span class="material-symbols-outlined" id="icon-play">play_arrow</span>
+                        </button>
+                        
+                        <div class="mg-volume-wrapper">
+                            <button id="btn-mute" class="mg-control-btn" aria-label="Silenciar">
+                                <span class="material-symbols-outlined" id="icon-vol">volume_up</span>
+                            </button>
+                            <input type="range" id="mg-volume-slider" min="0" max="1" step="0.01" value="1">
+                        </div>
+                    </div>
+
+                    <!-- Derecha: PIP y Pantalla Completa -->
+                    <div class="mg-controls-group">
+                        <button id="btn-pip" class="mg-control-btn" aria-label="Picture in Picture">
+                            <span class="material-symbols-outlined">picture_in_picture_alt</span>
+                        </button>
+                        <button id="btn-fs" class="mg-control-btn" aria-label="Pantalla Completa">
+                            <span class="material-symbols-outlined" id="icon-fs">fullscreen</span>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- ALERTAS E INFORMACIÓN -->
             <div class="mg-alerts-container">
                 <div class="mg-alert mg-alert-discord">
                     <strong style="color: #00ccff;">🎮 Cartelera de Transmisión</strong>
@@ -54,101 +73,142 @@
         </div>  
     </div>
 
+    <!-- FOOTER NATIVO -->
+    <footer id="footer"></footer>
 
+    <!-- SCRIPTS ESTRUCTURALES -->
+    <script src="https://kit.fontawesome.com/8f703f9e9a.js" crossorigin="anonymous"></script>
+    <script src="/MarinaGaming/assets/navbar/js/navbar.js"></script>
+    <script src="/MarinaGaming/assets/navbar/js/main.js"></script>
+    <script src="/MarinaGaming/assets/footer/js/footer.js"></script>
     
+    <!-- LÓGICA DE STREAMING Y CONTROLES -->
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('mg-tv-player');
-    const streamUrl = "https://pub-3404987dd8c841489f9a817427cea40d.r2.dev/tv-envivo/index.m3u8";
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. CONFIGURACIÓN DEL STREAM (HLS.js) ---
+        const video = document.getElementById('mg-tv-player');
+        const streamUrl = "https://pub-3404987dd8c841489f9a817427cea40d.r2.dev/tv-envivo/index.m3u8";
 
-    // 1. Verificamos si el navegador soporta hls.js (Chrome, Edge, Firefox, Opera)
-    if (Hls.isSupported()) {
-        const hls = new Hls({
-            // Configuraciones tácticas para streams en vivo (reduce el lag)
-            lowLatencyMode: true,
-            backBufferLength: 90
-        });
-        
-        hls.loadSource(streamUrl);
-        hls.attachMedia(video);
-        
-        hls.on(Hls.Events.ERROR, function (event, data) {
-            if (data.fatal) {
-                switch (data.type) {
-                    case Hls.ErrorTypes.NETWORK_ERROR:
-                        console.error("Error de red: La señal de Marina Gaming TV se ha perdido.");
+        if (Hls.isSupported()) {
+            const hls = new Hls({ lowLatencyMode: true, backBufferLength: 90 });
+            hls.loadSource(streamUrl);
+            hls.attachMedia(video);
+            
+            hls.on(Hls.Events.ERROR, function (event, data) {
+                if (data.fatal) {
+                    if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
                         hls.startLoad();
-                        break;
-                    case Hls.ErrorTypes.MEDIA_ERROR:
-                        console.error("Error de medio: Intentando recuperar la señal...");
+                    } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
                         hls.recoverMediaError();
-                        break;
-                    default:
+                    } else {
                         hls.destroy();
-                        break;
+                    }
                 }
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = streamUrl; // Fallback iOS
+        }
+
+        // --- 2. LÓGICA DE LOS CONTROLES PERSONALIZADOS ---
+        const videoWrapper = document.getElementById('mg-video-wrapper');
+        const btnPlay = document.getElementById('btn-play');
+        const iconPlay = document.getElementById('icon-play');
+        const btnMute = document.getElementById('btn-mute');
+        const iconVol = document.getElementById('icon-vol');
+        const volSlider = document.getElementById('mg-volume-slider');
+        const btnPip = document.getElementById('btn-pip');
+        const btnFs = document.getElementById('btn-fs');
+        const iconFs = document.getElementById('icon-fs');
+        
+        let preMuteVolume = 1;
+
+        // Play / Pause
+        btnPlay.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                iconPlay.textContent = 'pause';
+            } else {
+                video.pause();
+                iconPlay.textContent = 'play_arrow';
             }
         });
-    } 
-    // 2. Fallback para navegadores de Apple (Safari en iOS/Mac) que soportan m3u8 nativamente
-    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = streamUrl;
-    }
-});
 
-// ==========================================
-// LÓGICA DE PANTALLA COMPLETA Y ROTACIÓN
-// ==========================================
-const videoWrapper = document.getElementById('mg-video-wrapper');
-const fsBtn = document.getElementById('mg-fullscreen-btn');
-const fsIcon = fsBtn.querySelector('.material-symbols-outlined');
+        // Actualizar botón si el video se pausa por otra razón
+        video.addEventListener('play', () => iconPlay.textContent = 'pause');
+        video.addEventListener('pause', () => iconPlay.textContent = 'play_arrow');
 
-fsBtn.addEventListener('click', () => {
-    // Si no estamos en pantalla completa...
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        
-        // 1. Solicitar Pantalla Completa del CONTENEDOR (no del video)
-        if (videoWrapper.requestFullscreen) {
-            videoWrapper.requestFullscreen().then(lockScreen);
-        } else if (videoWrapper.webkitRequestFullscreen) { /* Safari / Edge antiguo */
-            videoWrapper.webkitRequestFullscreen();
-            lockScreen();
-        }
-
-    } else {
-        // 2. Salir de Pantalla Completa
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
-    }
-});
-
-// Función para forzar rotación en móviles Android
-function lockScreen() {
-    if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(err => {
-            console.log("El navegador no permite forzar la rotación, el usuario debe girarlo manualmente.");
+        // Control de Volumen y Mute
+        volSlider.addEventListener('input', (e) => {
+            video.volume = e.target.value;
+            updateVolumeIcon(video.volume);
         });
-    }
-}
 
-// Escuchar los cambios (por si el usuario sale presionando ESC en el teclado)
-document.addEventListener('fullscreenchange', updateFsButton);
-document.addEventListener('webkitfullscreenchange', updateFsButton);
+        btnMute.addEventListener('click', () => {
+            if (video.volume > 0) {
+                preMuteVolume = video.volume;
+                video.volume = 0;
+                volSlider.value = 0;
+            } else {
+                video.volume = preMuteVolume;
+                volSlider.value = preMuteVolume;
+            }
+            updateVolumeIcon(video.volume);
+        });
 
-function updateFsButton() {
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        fsIcon.textContent = 'fullscreen';
-        // Desbloquear rotación al salir
-        if (screen.orientation && screen.orientation.unlock) {
-            screen.orientation.unlock();
+        function updateVolumeIcon(vol) {
+            if (vol === 0) iconVol.textContent = 'volume_off';
+            else if (vol < 0.5) iconVol.textContent = 'volume_down';
+            else iconVol.textContent = 'volume_up';
         }
-    } else {
-        fsIcon.textContent = 'fullscreen_exit';
-    }
-}
-</script>
+
+        // Picture in Picture (PIP)
+        btnPip.addEventListener('click', async () => {
+            if (document.pictureInPictureElement) {
+                await document.exitPictureInPicture();
+            } else if (document.pictureInPictureEnabled) {
+                await video.requestPictureInPicture();
+            } else {
+                alert("Tu navegador no soporta Picture-in-Picture.");
+            }
+        });
+
+        // Pantalla Completa y Rotación
+        btnFs.addEventListener('click', () => {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (videoWrapper.requestFullscreen) {
+                    videoWrapper.requestFullscreen().then(lockScreen);
+                } else if (videoWrapper.webkitRequestFullscreen) {
+                    videoWrapper.webkitRequestFullscreen();
+                    lockScreen();
+                }
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        });
+
+        function lockScreen() {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(() => {
+                    console.log("Forzar rotación no soportado.");
+                });
+            }
+        }
+
+        function updateFsState() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                iconFs.textContent = 'fullscreen';
+                if (screen.orientation && screen.orientation.unlock) {
+                    screen.orientation.unlock();
+                }
+            } else {
+                iconFs.textContent = 'fullscreen_exit';
+            }
+        }
+
+        document.addEventListener('fullscreenchange', updateFsState);
+        document.addEventListener('webkitfullscreenchange', updateFsState);
+    });
+    </script>
 </body>
 </html>
