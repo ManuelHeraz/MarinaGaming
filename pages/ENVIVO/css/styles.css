@@ -1,308 +1,143 @@
-/* =========================================
-   ESTILOS GENERALES Y FONDO
-   ========================================= */
-body {
-    background-color: #000000 !important; /* Fondo explícitamente negro para modo TV */
-    color: #ffffff;
-    margin: 0;
-    padding: 0;
-}
+        /* =========================================
+           ESTILOS GENERALES Y FONDO
+           ========================================= */
+        body {
+            background-color: #000000 !important; 
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
 
-/* =========================================
-   ESTILOS DE LA MARCA DE AGUA (COMPUESTA)
-   ========================================= */
-.mg-watermark-container {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0.6; /* Transparencia de todo el bloque */
-    z-index: 10;
-    pointer-events: none; /* Los clics traspasan la marca de agua */
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.8));
-    transition: all 0.3s ease;
-}
+        .mg-tv-container {
+            background: linear-gradient(145deg, #1a1a20, #25252d);
+            border: 1px solid #0099FF;
+            border-radius: 15px;
+            padding: 25px;
+            width: 90%;
+            max-width: 850px; 
+            margin: 120px auto 40px auto; 
+            box-shadow: 0 10px 40px rgba(0, 153, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+        }
 
-.mg-watermark-text {
-    color: #ffffff;
-    font-size: 0.65rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-}
+        .mg-tv-header { text-align: center; margin-bottom: 20px; width: 100%; }
+        .mg-tv-header h3 {
+            color: #ffffff; margin: 15px 0 0 0; font-size: 1.6rem;
+            letter-spacing: 3px; text-shadow: 0 0 10px rgba(0, 153, 255, 0.5);
+        }
 
-.mg-watermark-logo {
-    width: 80px;
-    height: auto;
-}
+        .mg-live-badge {
+            background: rgba(255, 0, 50, 0.1); color: #ff3366;
+            padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: bold; display: inline-flex; align-items: center;
+            gap: 6px; border: 1px solid rgba(255, 0, 50, 0.3);
+        }
 
-.mg-watermark-live {
-    color: #ff3366; /* Rojo táctico para indicar "En Vivo" */
-    font-size: 0.65rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-top: 4px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
+        .mg-live-dot {
+            width: 8px; height: 8px; background-color: #ff3366;
+            border-radius: 50%; animation: pulse-red 1.5s infinite;
+        }
 
-/* El puntito rojo pequeño exclusivo para la mosca */
-.mg-live-dot-small {
-    width: 6px;
-    height: 6px;
-    background-color: #ff3366;
-    border-radius: 50%;
-    animation: pulse-red 1.5s infinite;
-}
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+            70% { box-shadow: 0 0 0 6px rgba(255, 51, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+        }
 
-/* Ocultar el botón de Pantalla Completa NATIVO de Chrome/Edge/Safari */
-video::-webkit-media-controls-fullscreen-button {
-    display: none !important;
-}
+        /* =========================================
+           CONTENEDOR DEL VIDEO Y MARCA DE AGUA
+           ========================================= */
+        .mg-video-wrapper {
+            position: relative; 
+            width: 100%;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            aspect-ratio: 16 / 9;
+        }
 
-/* Nuestro propio botón de Pantalla Completa */
-.mg-fullscreen-btn {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(0, 153, 255, 0.5);
-    color: #fff;
-    border-radius: 5px;
-    padding: 6px;
-    cursor: pointer;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    backdrop-filter: blur(4px);
-}
+        .mg-video-wrapper video {
+            width: 100%; height: 100%; object-fit: cover; outline: none;
+        }
 
-.mg-fullscreen-btn:hover {
-    background: rgba(0, 153, 255, 0.8);
-    border-color: #00ccff;
-}
+        .mg-watermark-container {
+            position: absolute; top: 15px; right: 20px; display: flex;
+            flex-direction: column; align-items: center; opacity: 0.6;
+            z-index: 10; pointer-events: none; 
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.8)); transition: all 0.3s ease;
+        }
 
-/* =========================================
-   COMPORTAMIENTO EN PANTALLA COMPLETA
-   ========================================= */
-.mg-video-wrapper:fullscreen {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    border: none;
-}
+        .mg-watermark-text { color: #ffffff; font-size: 0.65rem; font-weight: bold; letter-spacing: 1px; margin-bottom: 4px; }
+        .mg-watermark-logo { width: 80px; height: auto; }
+        .mg-watermark-live { color: #ff3366; font-size: 0.65rem; font-weight: bold; letter-spacing: 1px; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+        .mg-live-dot-small { width: 6px; height: 6px; background-color: #ff3366; border-radius: 50%; animation: pulse-red 1.5s infinite; }
 
-/* Ampliamos todo el contenedor de la marca de agua proporcionalmente */
-.mg-video-wrapper:fullscreen .mg-watermark-container {
-    top: 30px;
-    right: 40px;
-    transform: scale(1.3);
-    transform-origin: top right;
-}
+        /* =========================================
+           CONTROLES PERSONALIZADOS (HUD)
+           ========================================= */
+        .mg-tv-controls {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px 15px 10px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            opacity: 0; /* Oculto por defecto */
+            transition: opacity 0.3s ease;
+            z-index: 20;
+        }
 
-/* Compatibilidad Safari/Webkit para fullscreen */
-.mg-video-wrapper:-webkit-full-screen {
-    width: 100vw;
-    height: 100vh;
-}
-.mg-video-wrapper:-webkit-full-screen .mg-watermark-container {
-    top: 30px;
-    right: 40px;
-    transform: scale(1.3);
-    transform-origin: top right;
-}
+        /* Mostrar controles al pasar el mouse */
+        .mg-video-wrapper:hover .mg-tv-controls { opacity: 1; }
 
-/* =========================================
-   ESTILOS DE LA MARCA DE AGUA Y PANTALLA COMPLETA
-   ========================================= */
+        .mg-controls-group { display: flex; align-items: center; gap: 15px; }
 
-/* Hacemos que el wrapper sea el punto de referencia absoluto */
-.mg-video-wrapper {
-    position: relative; 
-    width: 100%;
-    background-color: #000;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #333;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    aspect-ratio: 16 / 9;
-}
+        .mg-control-btn {
+            background: none; border: none; color: #fff; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            padding: 0; transition: color 0.2s, transform 0.2s;
+        }
 
-/* La Marca de Agua */
-.mg-watermark {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    width: 85px; /* Tamaño del logo */
-    height: auto;
-    opacity: 0.5; /* Transparencia del 50% */
-    z-index: 10;
-    pointer-events: none; /* CRÍTICO: Permite que los clics traspasen el logo y le den al video */
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.8));
-    transition: all 0.3s ease;
-}
+        .mg-control-btn:hover { color: #0099FF; transform: scale(1.1); }
+        .mg-control-btn .material-symbols-outlined { font-size: 28px; }
 
-/* Ocultar el botón de Pantalla Completa NATIVO de Chrome/Edge/Safari */
-video::-webkit-media-controls-fullscreen-button {
-    display: none !important;
-}
+        /* Slider de Volumen */
+        .mg-volume-wrapper { display: flex; align-items: center; gap: 8px; }
+        #mg-volume-slider {
+            -webkit-appearance: none; width: 80px; height: 4px;
+            background: #555; border-radius: 2px; outline: none; transition: width 0.3s;
+        }
+        #mg-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 12px; height: 12px;
+            border-radius: 50%; background: #0099FF; cursor: pointer;
+        }
 
-/* Nuestro propio botón de Pantalla Completa */
-.mg-fullscreen-btn {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(0, 153, 255, 0.5);
-    color: #fff;
-    border-radius: 5px;
-    padding: 6px;
-    cursor: pointer;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    backdrop-filter: blur(4px);
-}
+        /* =========================================
+           COMPORTAMIENTO EN PANTALLA COMPLETA
+           ========================================= */
+        .mg-video-wrapper:fullscreen { width: 100vw; height: 100vh; border-radius: 0; border: none; }
+        .mg-video-wrapper:-webkit-full-screen { width: 100vw; height: 100vh; }
 
-.mg-fullscreen-btn:hover {
-    background: rgba(0, 153, 255, 0.8);
-    border-color: #00ccff;
-}
+        /* Aumentar significativamente el logo en Fullscreen */
+        .mg-video-wrapper:fullscreen .mg-watermark-container {
+            top: 40px; right: 50px; transform: scale(2); transform-origin: top right;
+        }
+        .mg-video-wrapper:-webkit-full-screen .mg-watermark-container {
+            top: 40px; right: 50px; transform: scale(2); transform-origin: top right;
+        }
 
-/* Comportamiento cuando TODO EL CONTENEDOR está en Pantalla Completa */
-.mg-video-wrapper:fullscreen {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    border: none;
-}
+        /* Alertas */
+        .mg-alerts-container { width: 100%; margin-top: 25px; }
+        .mg-alert { background: rgba(0, 0, 0, 0.4); padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; color: #ccc; border-left: 4px solid #00ccff; }
 
-/* Hacemos la marca de agua un poco más grande cuando estamos en Fullscreen */
-.mg-video-wrapper:fullscreen .mg-watermark {
-    width: 130px; 
-    top: 30px;
-    right: 40px;
-}
-
-/* Compatibilidad Safari/Webkit para fullscreen */
-.mg-video-wrapper:-webkit-full-screen {
-    width: 100vw;
-    height: 100vh;
-}
-.mg-video-wrapper:-webkit-full-screen .mg-watermark {
-    width: 130px; top: 30px; right: 40px;
-}
-
-/* =========================================
-   ESTILOS DEL REPRODUCTOR MARINA GAMING TV
-   ========================================= */
-.mg-tv-container {
-    background: linear-gradient(145deg, #1a1a20, #25252d);
-    border: 1px solid #0099FF;
-    border-radius: 15px;
-    padding: 25px;
-    width: 90%;
-    max-width: 850px; 
-    
-    /* MARGIN ACTUALIZADO: 120px arriba para despejar el Navbar, centrado automático, 40px abajo */
-    margin: 120px auto 40px auto; 
-    
-    box-shadow: 0 10px 40px rgba(0, 153, 255, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    box-sizing: border-box;
-}
-
-.mg-tv-header {
-    text-align: center;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.mg-tv-header h3 {
-    color: #ffffff;
-    margin: 15px 0 0 0;
-    font-size: 1.6rem;
-    letter-spacing: 3px;
-    text-shadow: 0 0 10px rgba(0, 153, 255, 0.5);
-}
-
-.mg-live-badge {
-    background: rgba(255, 0, 50, 0.1);
-    color: #ff3366;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border: 1px solid rgba(255, 0, 50, 0.3);
-}
-
-.mg-live-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #ff3366;
-    border-radius: 50%;
-    animation: pulse-red 1.5s infinite;
-}
-
-@keyframes pulse-red {
-    0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
-    70% { box-shadow: 0 0 0 6px rgba(255, 51, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
-}
-
-/* Contenedor del video 16:9 */
-.mg-video-wrapper {
-    width: 100%;
-    background-color: #000;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #333;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    aspect-ratio: 16 / 9; /* Mantiene la proporción perfecta en cualquier pantalla */
-}
-
-.mg-video-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    outline: none;
-}
-
-/* Alertas */
-.mg-alerts-container {
-    width: 100%;
-    margin-top: 25px;
-}
-
-.mg-alert {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #ccc;
-    border-left: 4px solid #00ccff;
-}
-
-@media (max-width: 768px) {
-    .mg-tv-container { 
-        width: 95%; 
-        padding: 15px; 
-        /* Margen ajustado en móviles, manteniendo el espacio para el Navbar */
-        margin: 100px auto 20px auto; 
-    }
-    .mg-tv-header h3 { font-size: 1.3rem; }
-}
+        @media (max-width: 768px) {
+            .mg-tv-container { width: 95%; padding: 15px; margin: 100px auto 20px auto; }
+            .mg-tv-header h3 { font-size: 1.3rem; }
+            /* Mostrar controles permanentemente en móviles para evitar problemas de hover */
+            .mg-tv-controls { opacity: 1; background: rgba(0,0,0,0.7); }
+        }
