@@ -90,7 +90,25 @@
         const streamUrl = "https://pub-3404987dd8c841489f9a817427cea40d.r2.dev/tv-envivo/index.m3u8";
 
         if (Hls.isSupported()) {
-            const hls = new Hls({ lowLatencyMode: true, backBufferLength: 90 });
+                    const hls = new Hls({ 
+                        // 1. Apagamos la baja latencia. Queremos fluidez, no velocidad.
+                        lowLatencyMode: false, 
+                        
+                        // 2. Le pedimos al reproductor que intente empezar 480 segundos (8 minutos) 
+                        // detrás del punto más en vivo de la transmisión.
+                        liveSyncDurationCount: 0, // Ignora el conteo de fragmentos
+                        liveSyncDuration: 480,    // Retraso objetivo en segundos (8 min * 60)
+                        
+                        // 3. Aumentamos la cantidad máxima de video que el navegador 
+                        // puede descargar por adelantado a 2 minutos (120 segundos). 
+                        // Esto crea un colchón inmenso contra caídas de internet.
+                        maxBufferLength: 120,
+                        maxMaxBufferLength: 120,
+                        
+                        // 4. Mantiene hasta 90 segundos de video pasado en la RAM 
+                        // por si el usuario retrocede un poco.
+                        backBufferLength: 90 
+                    });
             hls.loadSource(streamUrl);
             hls.attachMedia(video);
             
