@@ -92,13 +92,12 @@
         if (Hls.isSupported()) {
             const hls = new Hls({
                 lowLatencyMode: false,
-                // Forzamos al reproductor a ubicarse 60 segundos por detrás
+                // Retraso seguro de 60 segundos (aprox 7-8 fragmentos atrás)
                 liveSyncDurationCount: 7,
                 liveMaxLatencyDurationCount: 15,
-                // Buffers gigantescos (de hasta 3 minutos) en RAM del espectador
-                maxBufferLength: 180,
-                maxMaxBufferLength: 200,
-                maxBufferSize: 60 * 1000 * 1000 // Hasta 60 MB de memoria de navegador permitidos
+                // Buffers grandes para absorber inestabilidad de red (2 a 3 minutos)
+                maxBufferLength: 120,
+                maxMaxBufferLength: 180,
             });
             hls.loadSource(streamUrl);
             hls.attachMedia(video);
