@@ -144,8 +144,8 @@
         .mg-alerts-container { width: 100%; margin-top: 25px; }
         .mg-alert { background: rgba(0, 0, 0, 0.4); padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; color: #ccc; border-left: 4px solid #00ccff; }
 
-        /* =========================================
-           DISEÑO DEL CALENDARIO DE PROGRAMACIÓN
+/* =========================================
+           DISEÑO DEL CALENDARIO DE PROGRAMACIÓN (POR HORA)
            ========================================= */
         .mg-schedule-container {
             width: 90%;
@@ -164,7 +164,7 @@
 
         .table-responsive {
             width: 100%;
-            overflow-x: auto; /* Permite deslizar en celular */
+            overflow-x: auto;
             background: #111;
             border-radius: 10px;
             border: 1px solid #333;
@@ -174,10 +174,8 @@
         .mg-schedule-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px; /* Fuerza el ancho para que no se apriete en móviles */
+            min-width: 800px; 
             text-align: center;
-            font-size: 0.85rem;
-            color: #ddd;
         }
 
         .mg-schedule-table th {
@@ -189,15 +187,16 @@
             border: 1px solid #007acc;
         }
 
+        /* DISEÑO DE CELDA RELLENA */
         .mg-schedule-table td {
-            padding: 10px;
+            padding: 0; /* CRÍTICO: Quita el espacio interno para que la imagen toque los bordes */
             border: 1px solid #333;
             vertical-align: middle;
-            transition: background 0.2s;
+            height: 60px; /* Altura estándar para cada hora */
         }
 
         .mg-schedule-table td:hover {
-            background-color: #1a1a20;
+            opacity: 0.8; /* Efecto visual al pasar el mouse por encima de la imagen */
         }
 
         /* Columna de la hora */
@@ -206,16 +205,19 @@
             font-weight: bold;
             color: #0099FF;
             width: 70px;
+            padding: 10px !important; /* Devolvemos el padding solo a la hora */
+            font-size: 0.85rem;
         }
 
-        /* Clase auxiliar para imágenes de banners futuros */
+        /* IMAGEN QUE RELLENA LA CELDA */
         .mg-banner-img {
             width: 100%;
-            max-width: 120px;
-            height: auto;
-            border-radius: 4px;
+            height: 100%;
+            min-height: 60px; /* Igual a la altura de la celda */
+            object-fit: cover; /* Hace que la imagen actúe como un fondo de pantalla (no se aplasta) */
             display: block;
-            margin: 0 auto 5px auto;
+            margin: 0;
+            border-radius: 0; 
         }
 
         .mg-day-banner {
@@ -288,156 +290,202 @@
     </div>
 
     <!-- SECCIÓN DE CALENDARIO DE PROGRAMACIÓN -->
-    <div class="mg-schedule-container">
-        <h2>🗓️ Parrilla de Programación</h2>
-        <div class="table-responsive">
-            <table class="mg-schedule-table">
-                <thead>
-                <tr>
-                    <th>Hora (MX)</th>
-                    <th><!-- <img src="/assets/dias/lunes.png" class="mg-day-banner" alt="Lunes"> --> Lunes<br><small>Acción</small></th>
-                    <th><!-- <img src="/assets/dias/martes.png" class="mg-day-banner" alt="Martes"> --> Martes<br><small>Otaku</small></th>
-                    <th><!-- <img src="/assets/dias/miercoles.png" class="mg-day-banner" alt="Miércoles"> --> Miércoles<br><small>Narrativo</small></th>
-                    <th><!-- <img src="/assets/dias/jueves.png" class="mg-day-banner" alt="Jueves"> --> Jueves<br><small>Halo</small></th>
-                    <th><!-- <img src="/assets/dias/viernes.png" class="mg-day-banner" alt="Viernes"> --> Viernes<br><small>Marina Gaming</small></th>
-                    <th><!-- <img src="/assets/dias/sabado.png" class="mg-day-banner" alt="Sábado"> --> Sábado<br><small>Maratón</small></th>
-                    <th><!-- <img src="/assets/dias/domingo.png" class="mg-day-banner" alt="Domingo"> --> Domingo<br><small>Maratón</small></th>
-                </tr>
-                </thead>
-                <tbody>
-                <!-- BLOQUE MADRUGADA (00:00 - 02:59) -->
-                <tr>
-                    <td class="mg-time-col">00:00</td>
-                    <td colspan="7" rowspan="3">
-                        <!-- <img src="/assets/programas/musica.png" class="mg-banner-img" alt="Música Gaming"> -->
-                        Música Gaming (Para dormir)
-                    </td>
-                </tr>
-                <tr><td class="mg-time-col">01:00</td></tr>
-                <tr><td class="mg-time-col">02:00</td></tr>
+        <div class="mg-schedule-container">
+            <h2>🗓️ Parrilla de Programación</h2>
+            <div class="table-responsive">
+                <table class="mg-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Hora (MX)</th>
+                            <th><img src="https://imgur.com/WiASJvG.png" class="mg-day-banner" alt="Lunes"></th>
+                            <th><img src="https://imgur.com/8MMzobN.png" class="mg-day-banner" alt="Martes"></th>
+                            <th><img src="https://imgur.com/v1Djhwm.png" class="mg-day-banner" alt="Miércoles"></th>
+                            <th><img src="https://imgur.com/IlnlZlR.png" class="mg-day-banner" alt="Jueves"></th>
+                            <th><img src="https://i.imgur.com/XYszYht.png" class="mg-day-banner" alt="Viernes"></th>
+                            <th><img src="https://imgur.com/U0q0IYJ.png" class="mg-day-banner" alt="Sábado"></th>
+                            <th><img src="https://imgur.com/U0q0IYJ.png" class="mg-day-banner" alt="Domingo"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 00:00 a 02:00: Música Gaming -->
+                        <tr>
+                            <td class="mg-time-col">00:00</td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">01:00</td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">02:00</td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- BLOQUE RELLENO PROFUNDO (03:00 - 05:59) -->
-                <tr>
-                    <td class="mg-time-col">03:00</td>
-                    <td colspan="7" rowspan="3">
-                        <!-- <img src="/assets/programas/cine.png" class="mg-banner-img" alt="Cine SciFi"> -->
-                        Cine Sci-Fi / Acción
-                    </td>
-                </tr>
-                <tr><td class="mg-time-col">04:00</td></tr>
-                <tr><td class="mg-time-col">05:00</td></tr>
+                        <!-- 03:00 a 05:00: Cine Sci-Fi / Acción -->
+                        <tr>
+                            <td class="mg-time-col">03:00</td>
+                            <td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">04:00</td>
+                            <td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">05:00</td>
+                            <td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- HORA LIBRE (06:00) -->
-                <tr>
-                    <td class="mg-time-col">06:00</td>
-                    <td colspan="7">Libre / Aleatorio</td>
-                </tr>
+                        <!-- 06:00: Libre -->
+                        <tr>
+                            <td class="mg-time-col">06:00</td>
+                            <td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- BLOQUE MAÑANA (07:00 - 08:59) -->
-                <tr>
-                    <td class="mg-time-col">07:00</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/docu.png" class="mg-banner-img"> --> Documentales Videojuegos</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/docu.png" class="mg-banner-img"> --> Documentales Videojuegos</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/docu.png" class="mg-banner-img"> --> Documentales Videojuegos</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/gears.png" class="mg-banner-img"> --> Gears of War</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/halo.png" class="mg-banner-img"> --> Halo</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/docu.png" class="mg-banner-img"> --> Documentales Videojuegos</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/docu.png" class="mg-banner-img"> --> Documentales Videojuegos</td>
-                </tr>
-                <tr><td class="mg-time-col">08:00</td></tr>
+                        <!-- 07:00 a 08:00: Mañana -->
+                        <tr>
+                            <td class="mg-time-col">07:00</td>
+                            <td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/9JZzOhn.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">08:00</td>
+                            <td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td><td><img src="https://imgur.com/9JZzOhn.png" class="mg-banner-img"></td><td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ggGm34F.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- HORA LIBRE (09:00) -->
-                <tr>
-                    <td class="mg-time-col">09:00</td>
-                    <td colspan="7">Libre / Aleatorio</td>
-                </tr>
+                        <!-- 09:00: Libre -->
+                        <tr>
+                            <td class="mg-time-col">09:00</td>
+                            <td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- SELLO DE LA CASA (10:00) -->
-                <tr>
-                    <td class="mg-time-col">10:00</td>
-                    <td colspan="7"><!-- <img src="/assets/programas/marina.png" class="mg-banner-img"> --> Marina Gaming</td>
-                </tr>
+                        <!-- 10:00: Sello Marina -->
+                        <tr>
+                            <td class="mg-time-col">10:00</td>
+                            <td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- BLOQUE MEDIODÍA (11:00 - 13:59) y MARATONES FIN DE SEMANA -->
-                <tr>
-                    <td class="mg-time-col">11:00</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/gears.png" class="mg-banner-img"> --> Gears of War</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/anime.png" class="mg-banner-img"> --> Anime</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/series.png" class="mg-banner-img"> --> Series Animadas</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/halo.png" class="mg-banner-img"> --> Halo</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/marina.png" class="mg-banner-img"> --> Marina Gaming</td>
-                    <td>Libre / Aleatorio</td>
-                    <td>Libre / Aleatorio</td>
-                </tr>
-                <tr>
-                    <td class="mg-time-col">12:00</td>
-                    <td rowspan="4"><!-- <img src="/assets/programas/pelis.png" class="mg-banner-img"> --> Películas de Videojuegos<br>(Maratón 4h)</td>
-                    <td rowspan="4"><!-- <img src="/assets/programas/marina.png" class="mg-banner-img"> --> Marina Gaming<br>(Maratón 4h)</td>
-                </tr>
-                <tr><td class="mg-time-col">13:00</td></tr>
+                        <!-- 11:00: Mediodía -->
+                        <tr>
+                            <td class="mg-time-col">11:00</td>
+                            <td><img src="https://imgur.com/9JZzOhn.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ALHMoKf.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td>
+                        </tr>
+                        <!-- 12:00 a 13:00 -->
+                        <tr>
+                            <td class="mg-time-col">12:00</td>
+                            <td><img src="https://imgur.com/9JZzOhn.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ALHMoKf.png" class="mg-banner-img"></td><td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">13:00</td>
+                            <td><img src="https://imgur.com/9JZzOhn.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ALHMoKf.png" class="mg-banner-img"></td><td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- BLOQUE COMIDA (14:00 - 15:59) -->
-                <tr>
-                    <td class="mg-time-col">14:00</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/bleach.png" class="mg-banner-img"> --> Bleach</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/pelis.png" class="mg-banner-img"> --> Películas de Videojuegos</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/deltora.png" class="mg-banner-img"> --> Deltora Quest</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/anime.png" class="mg-banner-img"> --> Anime</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/bleach.png" class="mg-banner-img"> --> Bleach</td>
-                </tr>
-                <tr><td class="mg-time-col">15:00</td></tr>
+                        <!-- 14:00 a 15:00: Comida -->
+                        <tr>
+                            <td class="mg-time-col">14:00</td>
+                            <td><img src="https://imgur.com/fYLV740.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/5WYBR9x.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ALHMoKf.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/fYLV740.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">15:00</td>
+                            <td><img src="https://imgur.com/fYLV740.png" class="mg-banner-img"></td><td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td><td><img src="https://imgur.com/5WYBR9x.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ALHMoKf.png" class="mg-banner-img"></td><td><img src="https://imgur.com/fYLV740.png" class="mg-banner-img"></td><td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- HORA LIBRE (16:00) -->
-                <tr>
-                    <td class="mg-time-col">16:00</td>
-                    <td colspan="7">Libre / Aleatorio</td>
-                </tr>
+                        <!-- 16:00: Libre -->
+                        <tr>
+                            <td class="mg-time-col">16:00</td>
+                            <td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td><td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- CORTE MUSICAL (17:00) -->
-                <tr>
-                    <td class="mg-time-col">17:00</td>
-                    <td colspan="7"><!-- <img src="/assets/programas/musica.png" class="mg-banner-img"> --> Música Gaming</td>
-                </tr>
+                        <!-- 17:00: Corte Musical -->
+                        <tr>
+                            <td class="mg-time-col">17:00</td>
+                            <td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td><td><img src="https://imgur.com/ImQH9Jm.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- BLOQUE TARDE (18:00 - 20:59) -->
-                <tr>
-                    <td class="mg-time-col">18:00</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/cine.png" class="mg-banner-img"> --> Cine Sci-Fi / Acción</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/deltora.png" class="mg-banner-img"> --> Deltora Quest</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/detroit.png" class="mg-banner-img"> --> Detroit: Become Human</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/halo.png" class="mg-banner-img"> --> Halo</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/marina.png" class="mg-banner-img"> --> Marina Gaming</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/series.png" class="mg-banner-img"> --> Series Animadas</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/pelis.png" class="mg-banner-img"> --> Películas Videojuegos</td>
-                </tr>
-                <tr><td class="mg-time-col">19:00</td></tr>
-                <tr>
-                    <td class="mg-time-col">20:00</td>
-                    <td rowspan="2"><!-- <img src="/assets/programas/halo.png" class="mg-banner-img"> --> Halo</td>
-                    <td rowspan="4"><!-- <img src="/assets/programas/series.png" class="mg-banner-img"> --> Series Animadas<br>(Maratón 4h)</td>
-                </tr>
+                        <!-- 18:00 a 19:00: Tarde -->
+                        <tr>
+                            <td class="mg-time-col">18:00</td>
+                            <td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/5WYBR9x.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/xG2CqdL.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">19:00</td>
+                            <td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td><td><img src="https://imgur.com/5WYBR9x.png" class="mg-banner-img"></td><td><img src="https://imgur.com/xG2CqdL.png" class="mg-banner-img"></td><td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td><td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td><td><img src="https://imgur.com/aQNLUJU.png" class="mg-banner-img"></td>
+                        </tr>
+                        <!-- 20:00 -->
+                        <tr>
+                            <td class="mg-time-col">20:00</td>
+                            <td><img src="https://imgur.com/HfLFoP0.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/5WYBR9x.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/xG2CqdL.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/14u51qJ.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td>
+                        </tr>
 
-                <!-- BLOQUE NOCHE (21:00 - 23:59) -->
-                <tr>
-                    <td class="mg-time-col">21:00</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/cyberpunk.png" class="mg-banner-img"> --> Cyberpunk: Edgerunners</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/bleach.png" class="mg-banner-img"> --> Bleach</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/cyberpunk.png" class="mg-banner-img"> --> Cyberpunk: Edgerunners</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/halo.png" class="mg-banner-img"> --> Halo</td>
-                    <td rowspan="3"><!-- <img src="/assets/programas/cyberpunk.png" class="mg-banner-img"> --> Cyberpunk: Edgerunners</td>
-                </tr>
-                <tr>
-                    <td class="mg-time-col">22:00</td>
-                    <td>Libre / Aleatorio</td>
-                </tr>
-                <tr>
-                    <td class="mg-time-col">23:00</td>
-                    <td><!-- <img src="/assets/programas/anime.png" class="mg-banner-img"> --> Anime</td>
-                </tr>
-                </tbody>
-            </table>
+                        <!-- 21:00 a 23:00: Noche -->
+                        <tr>
+                            <td class="mg-time-col">21:00</td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/fYLV740.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">22:00</td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/fYLV740.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/tW5nuoA.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td>
+                        </tr>
+                        <tr>
+                            <td class="mg-time-col">23:00</td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/fYLV740.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/Vpws79W.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/W1cMDho.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/ALHMoKf.png" class="mg-banner-img"></td>
+                            <td><img src="https://imgur.com/TSb7ZjZ.png" class="mg-banner-img"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 </div>
 
 <!-- FOOTER NATIVO -->
