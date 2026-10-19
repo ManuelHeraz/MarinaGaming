@@ -422,6 +422,94 @@ h1 {
 }
 
 /* =========================================
+   DISEÑO DEL CALENDARIO DE RADIO (POR HORA)
+   ========================================= */
+.mg-schedule-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 50px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mg-schedule-container h2 {
+    color: #0099FF;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    background: #111;
+    border-radius: 10px;
+    border: 1px solid #333;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.mg-schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; 
+    text-align: center;
+}
+
+.mg-schedule-table th {
+    background-color: #0099FF;
+    color: #fff;
+    padding: 12px 10px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    border: 1px solid #007acc;
+}
+
+/* Diseño de las celdas (esta vez con texto en lugar de imágenes gigantes) */
+.mg-schedule-table td {
+    padding: 8px 5px; 
+    border: 1px solid #333;
+    vertical-align: middle;
+    height: 45px; /* Altura un poco menor para la radio ya que no hay banners de imagen */
+    font-size: 0.85rem;
+    color: #ddd;
+    transition: background 0.2s;
+}
+
+.mg-schedule-table td:hover {
+    background-color: #1a1a20;
+    color: #0099FF;
+    font-weight: bold;
+}
+
+/* Columna de la hora */
+.mg-time-col {
+    background-color: #1a1a20;
+    font-weight: bold;
+    color: #0099FF;
+    width: 70px;
+}
+
+/* Colores temáticos para los programas de Radio (Opcional, para darle vida) */
+.show-seleccion { color: #888; } /* Gris para la madrugada */
+.show-punto { color: #00ccff; }
+.show-maquina { color: #ffcc00; }
+.show-64bits { color: #ff9900; }
+.show-indie { color: #cc66ff; }
+.show-zelda { color: #33cc33; }
+.show-otaku { color: #ff3399; }
+.show-hispana { color: #ff6600; }
+.show-halo { color: #0066cc; }
+.show-boss { color: #ff3333; font-weight: bold; }
+.show-santos { color: #ffcc00; }
+.show-checkpoint { color: #9933ff; }
+.show-vice { color: #ff00ff; }
+.show-festival { color: #00ffcc; }
+
+@media (max-width: 768px) {
+    .mg-schedule-container { width: 95%; }
+}
+
+/* =========================================
    DISEÑO RESPONSIVO (MÓVILES)
    ========================================= */
 @media (max-width: 600px) {
